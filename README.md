@@ -6,5 +6,5 @@ This project was created for practice purposes and it is not intended to be used
 
 
 ## Kata Description
-The exercise description can be checked [here]().
+The exercise description can be checked [here](kata_description.txt).
 
