@@ -14,6 +14,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import static com.lucasmafra.socialnetworking.domain.usecases.PublishMessageToTimelineUseCase.*;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.BDDMockito.given;
@@ -28,12 +29,12 @@ public class PublishMessageToTimelineTest {
     private Clock clock;
 
     private PostGateway postGateway;
-    private PublishMessageToTimeline publishMessageToTimeline;
+    private PublishMessageToTimelineUseCase publishMessageToTimelineUseCase;
 
     @Before public void
     initialize() {
         postGateway = new InMemoryPostGateway(clock);
-        publishMessageToTimeline = new PublishMessageToTimeline(postGateway);
+        publishMessageToTimelineUseCase = new PublishMessageToTimelineUseCase(postGateway);
     }
 
     @Test public void
@@ -44,7 +45,7 @@ public class PublishMessageToTimelineTest {
         String message = "I love the weather today";
 
         // When
-        publishMessageToTimeline.execute(USER_ID, message);
+        publishMessageToTimelineUseCase.execute(new RequestModel(USER_ID, message));
 
         // Then
         List<Post> userPosts = postGateway.getPostsInReverseChronologicalOrder(USER_ID);
