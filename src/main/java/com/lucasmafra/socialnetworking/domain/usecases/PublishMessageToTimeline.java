@@ -1,4 +1,4 @@
-package com.lucasmafra.socialnetworking.usecases;
+package com.lucasmafra.socialnetworking.domain.usecases;
 
 import com.lucasmafra.socialnetworking.domain.gateways.PostGateway;
 
