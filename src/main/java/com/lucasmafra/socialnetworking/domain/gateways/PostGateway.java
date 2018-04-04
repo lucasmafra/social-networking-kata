@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface PostGateway {
     List<Post> getPostsInReverseChronologicalOrder(String userId);
+
+    void savePost(String userId, String message);
 }

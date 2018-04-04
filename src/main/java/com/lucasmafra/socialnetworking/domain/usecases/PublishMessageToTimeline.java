@@ -11,6 +11,6 @@ public class PublishMessageToTimeline {
     }
 
     public void execute(String userId, String message) {
-
+        postGateway.savePost(userId, message);
     }
 }

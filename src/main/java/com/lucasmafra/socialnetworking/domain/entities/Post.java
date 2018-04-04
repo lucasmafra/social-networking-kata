@@ -1,12 +1,14 @@
 package com.lucasmafra.socialnetworking.domain.entities;
 
+import java.util.Date;
+
 public class Post {
 
-    private String message;
     private String userId;
-    private String createdDate;
+    private String message;
+    private Date createdDate;
 
-    public Post(String message, String userId, String createdDate) {
+    public Post(String userId, String message, Date createdDate) {
         this.message = message;
         this.userId = userId;
         this.createdDate = createdDate;
@@ -20,7 +22,7 @@ public class Post {
         return userId;
     }
 
-    public String getCreatedDate() {
+    public Date getCreatedDate() {
         return createdDate;
     }
 }

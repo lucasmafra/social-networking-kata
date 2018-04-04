@@ -28,10 +28,12 @@ public class PublishMessageToTimelineTest {
     private Clock clock;
 
     private PostGateway postGateway;
+    private PublishMessageToTimeline publishMessageToTimeline;
 
     @Before public void
     initialize() {
         postGateway = new InMemoryPostGateway(clock);
+        publishMessageToTimeline = new PublishMessageToTimeline(postGateway);
     }
 
     @Test public void
@@ -40,18 +42,17 @@ public class PublishMessageToTimelineTest {
         // Given
         given(clock.now()).willReturn(SYSTEM_DATE);
         String message = "I love the weather today";
-        PublishMessageToTimeline publishMessageToTimeline = new PublishMessageToTimeline(postGateway);
 
         // When
         publishMessageToTimeline.execute(USER_ID, message);
 
         // Then
         List<Post> userPosts = postGateway.getPostsInReverseChronologicalOrder(USER_ID);
-        assertThat("expect that only 1 post was created", userPosts.size(), is(1));
+        assertThat("expect that 1 post was created", userPosts.size(), is(1));
         Post post = userPosts.get(0);
-        assertThat("expect that the post was created with correct message", post.getMessage(), is(message));
-        assertThat("expect that the post was created with correct user id", post.getUserId(), is(USER_ID));
-        assertThat("expect that the post was created with correct date", post.getCreatedDate(), is(SYSTEM_DATE));
+        assertThat("expect that the created post has correct message", post.getMessage(), is(message));
+        assertThat("expect that the created post has correct user id", post.getUserId(), is(USER_ID));
+        assertThat("expect that the created post has correct created date", post.getCreatedDate(), is(SYSTEM_DATE));
     }
 
     private static Date mockDate(int year, int month, int day, int hour, int minute, int second) {
