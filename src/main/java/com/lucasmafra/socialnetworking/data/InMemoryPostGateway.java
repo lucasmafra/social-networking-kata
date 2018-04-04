@@ -2,11 +2,11 @@ package com.lucasmafra.socialnetworking.data;
 
 import com.lucasmafra.socialnetworking.domain.entities.Post;
 import com.lucasmafra.socialnetworking.domain.gateways.PostGateway;
+import com.lucasmafra.socialnetworking.utilities.Clock;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static java.util.Comparator.comparing;
 import static java.util.stream.Collectors.*;
