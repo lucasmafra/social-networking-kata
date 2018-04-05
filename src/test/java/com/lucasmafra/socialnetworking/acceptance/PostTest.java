@@ -1,15 +1,11 @@
 package com.lucasmafra.socialnetworking.acceptance;
 
 import com.lucasmafra.socialnetworking.domain.entities.Post;
-import com.lucasmafra.socialnetworking.doubles.AppContextStub;
-import com.lucasmafra.socialnetworking.infrastructure.console.main.App;
-import org.junit.Before;
 import org.junit.Test;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import static com.lucasmafra.socialnetworking.doubles.ClockStub.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -44,16 +40,6 @@ public class PostTest extends BaseAcceptanceTest {
         List<Post> posts = getPosts("Bob");
         assertThat("2 posts were created", posts.size(), is(2));
 
-    }
-
-    private Date setClock(int year, int month, int day, int hour, int minute, int second) {
-        Date date = asDate(year, month, day, hour, minute, second);
-        context.getClock().setNow(date); // adjust clock
-        return date;
-    }
-
-    private List<Post> getPosts(String userId) {
-        return context.getPostGateway().getPostsInReverseChronologicalOrder(userId);
     }
 
 }

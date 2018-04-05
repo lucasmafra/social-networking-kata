@@ -1,9 +1,12 @@
 package com.lucasmafra.socialnetworking.infrastructure.console.main;
 
 import com.lucasmafra.socialnetworking.domain.usecases.readtimeline.ReadTimelineOutputBoundary;
+import com.lucasmafra.socialnetworking.domain.usecases.readwall.ReadWallOutputBoundary;
 import com.lucasmafra.socialnetworking.infrastructure.console.handlers.*;
 import com.lucasmafra.socialnetworking.infrastructure.console.presenters.ReadTimelinePresenter;
+import com.lucasmafra.socialnetworking.infrastructure.console.presenters.ReadWallPresenter;
 import com.lucasmafra.socialnetworking.infrastructure.console.views.ReadTimelineViewController;
+import com.lucasmafra.socialnetworking.infrastructure.console.views.ReadWallViewController;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,7 +17,7 @@ public class App {
 
     private AppContext context;
     private HandlerMatcher handlerMatcher;
-    private String COMMAND_PREFIX = "> ";
+    private String NEW_LINE_PREFIX = "> ";
 
     public static void main(String[] args) {
         App app = new App(AppContext.getInstance());
@@ -28,7 +31,7 @@ public class App {
 
     public void processInput() {
         try {
-            context.getPrintStream().print(COMMAND_PREFIX);
+            context.getPrintStream().print(NEW_LINE_PREFIX);
             String input = context.getBufferedReader().readNextLine();
             Handler handler = handlerMatcher.match(input);
             handler.handle(input);
@@ -53,6 +56,7 @@ public class App {
         handlers.add(createPostHandler());
         handlers.add(createReadTimelineHandler());
         handlers.add(createFollowHandler());
+        handlers.add(createReadWallHandler());
         return handlers;
     }
 
@@ -67,5 +71,11 @@ public class App {
     }
 
     private Handler createFollowHandler() { return new FollowHandler(context); }
+
+    private Handler createReadWallHandler() {
+        ReadWallOutputBoundary presenter = new ReadWallPresenter(context.getClock());
+        ReadWallViewController view = new ReadWallViewController(context.getPrintStream());
+        return new ReadWallHandler(context, presenter, view);
+    }
 
 }
