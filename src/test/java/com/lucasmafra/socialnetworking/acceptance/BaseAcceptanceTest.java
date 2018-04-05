@@ -14,12 +14,6 @@ import static com.lucasmafra.socialnetworking.doubles.ClockStub.asDate;
 
 public class BaseAcceptanceTest {
 
-    @Before public void
-    initialize() {
-        context = new AppContextStub();
-        app = new App(context);
-    }
-
     protected AppContextStub context;
     protected App app;
 

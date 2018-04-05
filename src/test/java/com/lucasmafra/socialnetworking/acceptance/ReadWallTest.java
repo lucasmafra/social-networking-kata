@@ -1,5 +1,8 @@
 package com.lucasmafra.socialnetworking.acceptance;
 
+import com.lucasmafra.socialnetworking.doubles.AppContextStub;
+import com.lucasmafra.socialnetworking.infrastructure.console.main.App;
+import org.junit.Before;
 import org.junit.Test;
 
 import static java.util.Calendar.*;
@@ -7,7 +10,12 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 public class ReadWallTest extends BaseAcceptanceTest {
-    
+
+    @Before public void initialize() {
+        context = new AppContextStub();
+        app = new App(context);
+    }
+
     @Test public void
     user_can_view_an_aggregated_list_of_all_subscriptions() {
 

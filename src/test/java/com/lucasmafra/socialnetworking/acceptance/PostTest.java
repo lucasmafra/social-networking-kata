@@ -1,6 +1,9 @@
 package com.lucasmafra.socialnetworking.acceptance;
 
 import com.lucasmafra.socialnetworking.domain.entities.Post;
+import com.lucasmafra.socialnetworking.doubles.AppContextStub;
+import com.lucasmafra.socialnetworking.infrastructure.console.main.App;
+import org.junit.Before;
 import org.junit.Test;
 import java.util.Calendar;
 import java.util.Date;
@@ -10,6 +13,12 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 public class PostTest extends BaseAcceptanceTest {
+
+    @Before public void
+    initialize() {
+        context = new AppContextStub();
+        app = new App(context);
+    }
 
     @Test public void
     user_can_publish_message_to_personal_timeline() {
