@@ -7,7 +7,7 @@ import java.util.Date;
 
 public class ClockStub implements Clock {
 
-    private Date now;
+    private Date now = new Date();
 
     @Override
     public Date now() {

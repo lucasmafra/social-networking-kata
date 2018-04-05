@@ -11,7 +11,7 @@ public class PostInteractor implements PostInputBoundary {
     }
 
     @Override
-    public void publishMessageToPersonalTimeline(PostRequestModel request) {
+    public void post(PostRequestModel request) {
         postGateway.savePost(request.getUserId(), request.getMessage());
     }
 }
