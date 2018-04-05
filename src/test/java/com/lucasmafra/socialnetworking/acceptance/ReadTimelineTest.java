@@ -18,15 +18,13 @@ public class ReadTimelineTest {
 
     private App app;
 
-    @Before
-    public void
+    @Before public void
     initialize() {
         context = AppContextStub.getInstance();
         app = new App(context);
     }
 
-    @Test
-    public void
+    @Test public void
     user_can_view_users_timeline() throws IOException {
 
         // Given
