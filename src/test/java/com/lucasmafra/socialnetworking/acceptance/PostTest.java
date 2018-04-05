@@ -22,15 +22,13 @@ public class PostTest {
 
     private static final Date NOW = ClockStub.asDate(2018, Calendar.APRIL, 6, 8, 4, 0);
 
-    @Before
-    public void
+    @Before public void
     initialize() {
         context = AppContextStub.getInstance();
         app = new App(context);
     }
 
-    @Test
-    public void
+    @Test public void
     user_can_publish_message_to_personal_timeline() {
 
         // Given
