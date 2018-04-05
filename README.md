@@ -31,12 +31,12 @@ After build the project, execute the command below to run the application:
 
 * This application design was heavily inspired on [Clean Architecure](https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html) by Uncle Bob.
 
-* The core principle that led my design was *"Depend on abstractions, not on concretions"*. Because of
+* The core principle that led my design is *"Depend on abstractions, not on concretions"*. Because of
  that, I created some interfaces and abstraction layers that would not be necessary for the exercise completion. 
 Still, I decided to follow this way to practice and see if I could get to a good design.
 
-* That was not my first time practicing Clean Architecture and TDD. But it was my first time trying to take 
-a *Outside-in* approach! It introduced me some difficulties since I wasn't sure where to go in the first
+* That was not my first time practicing Clean Architecture and TDD. But it was my first time trying the
+*Outside-in* approach! It introduced me some difficulties since I wasn't sure where to go in the first
  acceptance tests, but it led me to an unexpected cool new thing: as I was coding to pass in the 
  acceptance tests, I realized how the "package by layer" style that I was using was sort of inefficient,
   since I had to transverse many folders and layers just to get a feature done. So I decided to go back 
