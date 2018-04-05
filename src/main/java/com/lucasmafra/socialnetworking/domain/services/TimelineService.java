@@ -4,6 +4,7 @@ import com.lucasmafra.socialnetworking.domain.entities.Post;
 
 import java.util.List;
 
-public interface WallService {
-    List<Post> getWallFor(String user);
+public interface TimelineService {
+    void postToTimeline(String user, String message);
+    List<Post> getTimelineFor(String user);
 }

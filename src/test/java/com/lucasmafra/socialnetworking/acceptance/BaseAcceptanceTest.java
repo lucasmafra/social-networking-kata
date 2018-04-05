@@ -1,5 +1,6 @@
 package com.lucasmafra.socialnetworking.acceptance;
 
+import com.lucasmafra.socialnetworking.domain.entities.Follow;
 import com.lucasmafra.socialnetworking.domain.entities.Post;
 import com.lucasmafra.socialnetworking.doubles.AppContextStub;
 import com.lucasmafra.socialnetworking.infrastructure.console.main.App;
@@ -37,7 +38,7 @@ public class BaseAcceptanceTest {
 
     protected void createPost(String userId, String message, int timeAgo, int unit) {
         context.getClock().setNow(getTimeAgo(timeAgo, unit));
-        context.getPostGateway().savePost(userId, message);
+        context.getPostGateway().savePost(new Post(userId, message, context.getClock().now()));
     }
 
     private Date getTimeAgo(int amount, int unit) {
@@ -51,7 +52,7 @@ public class BaseAcceptanceTest {
     }
 
     protected void createFollow(String follower, String followed) {
-        context.getFollowGateway().saveFollow(follower, followed);
+        context.getFollowGateway().saveFollow(new Follow(follower, followed));
     }
 
     protected Date setClock(int year, int month, int day, int hour, int minute, int second) {
@@ -60,11 +61,11 @@ public class BaseAcceptanceTest {
         return date;
     }
 
-    protected List<Post> getPosts(String userId) {
-        return context.getPostGateway().getPostsInReverseChronologicalOrderFor(userId);
+    protected List<Post> getPosts(String user) {
+        return context.getPostGateway().getPostsInReverseChronologicalOrderFor(user);
     }
 
-    protected List<String> getFollowingUsersFor(String userId) {
-        return context.getFollowGateway().getFollowingUsersFor(userId);
+    protected List<String> getFollowingUsersFor(String user) {
+        return context.getFollowGateway().getFollowingUsersFor(user);
     }
 }

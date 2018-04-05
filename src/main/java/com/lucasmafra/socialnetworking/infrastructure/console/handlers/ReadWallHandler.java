@@ -1,5 +1,6 @@
 package com.lucasmafra.socialnetworking.infrastructure.console.handlers;
 
+import com.lucasmafra.socialnetworking.domain.services.WallServiceImpl;
 import com.lucasmafra.socialnetworking.domain.usecases.View;
 import com.lucasmafra.socialnetworking.domain.services.WallService;
 import com.lucasmafra.socialnetworking.domain.usecases.readwall.*;
@@ -22,7 +23,7 @@ public class ReadWallHandler extends BaseHandler {
 
     @Override
     public void handle(String input) {
-        WallService wallService = context.getWallService();
+        WallService wallService = createWallService();
         ReadWallInputBoundary useCase = new ReadWallInteractor(wallService);
         ReadWallController controller = new ReadWallController(parseInput(input), useCase, presenter, view);
         controller.control();
@@ -36,7 +37,11 @@ public class ReadWallHandler extends BaseHandler {
     private ReadWallRequestModel parseInput(String input) {
         Matcher matcher = getInputPattern().matcher(input);
         matcher.matches();
-        String userId = matcher.group(1);
-        return new ReadWallRequestModel(userId);
+        String user = matcher.group(1);
+        return new ReadWallRequestModel(user);
+    }
+
+    private WallServiceImpl createWallService() {
+        return new WallServiceImpl(context.getPostGateway(), context.getFollowGateway());
     }
 }

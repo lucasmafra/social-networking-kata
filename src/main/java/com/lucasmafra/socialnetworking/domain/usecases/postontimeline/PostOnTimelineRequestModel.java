@@ -1,11 +1,11 @@
-package com.lucasmafra.socialnetworking.domain.usecases.post;
+package com.lucasmafra.socialnetworking.domain.usecases.postontimeline;
 
-public class PostRequestModel {
+public class PostOnTimelineRequestModel {
 
     private String user;
     private String message;
 
-    public PostRequestModel(String user, String message) {
+    public PostOnTimelineRequestModel(String user, String message) {
         this.user = user;
         this.message = message;
     }

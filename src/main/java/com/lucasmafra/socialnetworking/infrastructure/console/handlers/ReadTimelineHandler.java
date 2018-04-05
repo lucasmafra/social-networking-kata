@@ -1,5 +1,7 @@
 package com.lucasmafra.socialnetworking.infrastructure.console.handlers;
 
+import com.lucasmafra.socialnetworking.domain.services.TimelineService;
+import com.lucasmafra.socialnetworking.domain.services.TimelineServiceImpl;
 import com.lucasmafra.socialnetworking.domain.usecases.View;
 import com.lucasmafra.socialnetworking.domain.gateways.PostGateway;
 import com.lucasmafra.socialnetworking.domain.usecases.readtimeline.*;
@@ -22,8 +24,8 @@ public class ReadTimelineHandler extends BaseHandler {
 
     @Override
     public void handle(String input) {
-        PostGateway postGateway = context.getPostGateway();
-        ReadTimelineInputBoundary useCase = new ReadTimelineInteractor(postGateway);
+        TimelineService timelineService = createTimelineService();
+        ReadTimelineInputBoundary useCase = new ReadTimelineInteractor(timelineService);
         ReadTimelineController controller = new ReadTimelineController(parseInput(input), useCase, presenter, view);
         controller.control();
     }
@@ -36,7 +38,11 @@ public class ReadTimelineHandler extends BaseHandler {
     private ReadTimelineRequestModel parseInput(String input) {
         Matcher matcher = getInputPattern().matcher(input);
         matcher.matches();
-        String userId = matcher.group(1);
-        return new ReadTimelineRequestModel(userId);
+        String user = matcher.group(1);
+        return new ReadTimelineRequestModel(user);
+    }
+
+    private TimelineServiceImpl createTimelineService() {
+        return new TimelineServiceImpl(context.getPostGateway(), context.getClock());
     }
 }

@@ -2,10 +2,9 @@ package com.lucasmafra.socialnetworking.infrastructure.data;
 
 import com.lucasmafra.socialnetworking.domain.entities.Post;
 import com.lucasmafra.socialnetworking.domain.gateways.PostGateway;
-import com.lucasmafra.socialnetworking.infrastructure.Clock;
+import com.lucasmafra.socialnetworking.domain.Clock;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import static java.util.Comparator.comparing;
@@ -29,14 +28,8 @@ public class InMemoryPostGateway implements PostGateway {
     }
 
     @Override
-    public void savePost(String user, String message) {
-        Post post = createPostFrom(user, message);
+    public void savePost(Post post) {
         posts.add(post);
-    }
-
-    private Post createPostFrom(String user, String message) {
-        Date creationDate = clock.now();
-        return new Post(user, message, creationDate);
     }
 
 }

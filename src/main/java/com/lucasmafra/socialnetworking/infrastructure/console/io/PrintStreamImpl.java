@@ -1,4 +1,4 @@
-package com.lucasmafra.socialnetworking.infrastructure.console.utilities;
+package com.lucasmafra.socialnetworking.infrastructure.console.io;
 
 public class PrintStreamImpl implements PrintStream {
 

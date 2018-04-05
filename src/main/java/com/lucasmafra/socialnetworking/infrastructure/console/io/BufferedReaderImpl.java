@@ -1,4 +1,4 @@
-package com.lucasmafra.socialnetworking.infrastructure.console.utilities;
+package com.lucasmafra.socialnetworking.infrastructure.console.io;
 
 import java.io.IOException;
 import java.io.InputStreamReader;

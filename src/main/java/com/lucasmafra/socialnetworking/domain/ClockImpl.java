@@ -1,4 +1,4 @@
-package com.lucasmafra.socialnetworking.infrastructure;
+package com.lucasmafra.socialnetworking.domain;
 
 import java.util.Date;
 

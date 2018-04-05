@@ -2,6 +2,7 @@ package com.lucasmafra.socialnetworking.domain.usecases.readtimeline;
 
 import com.lucasmafra.socialnetworking.domain.entities.Post;
 import com.lucasmafra.socialnetworking.domain.gateways.PostGateway;
+import com.lucasmafra.socialnetworking.domain.services.TimelineService;
 
 import java.util.List;
 
@@ -10,15 +11,15 @@ import static java.util.stream.Collectors.*;
 
 public class ReadTimelineInteractor implements ReadTimelineInputBoundary {
 
-    private PostGateway postGateway;
+    private TimelineService timelineService;
 
-    public ReadTimelineInteractor(PostGateway postGateway) {
-        this.postGateway = postGateway;
+    public ReadTimelineInteractor(TimelineService timelineService) {
+        this.timelineService = timelineService;
     }
 
     @Override
     public void readTimeline(ReadTimelineRequestModel request, ReadTimelineOutputBoundary presenter) {
-        List<Post> posts = this.postGateway.getPostsInReverseChronologicalOrderFor(request.getUser());
+        List<Post> posts = this.timelineService.getTimelineFor(request.getUser());
         ReadTimelineResponseModel response = new ReadTimelineResponseModel(
                 posts.stream()
                 .map(post -> new PostItem(post.getMessage(), post.getCreatedDate()))

@@ -1,4 +1,4 @@
-package com.lucasmafra.socialnetworking.infrastructure.console.utilities;
+package com.lucasmafra.socialnetworking.infrastructure.utilities;
 
 import java.time.temporal.ChronoUnit;
 import java.util.*;

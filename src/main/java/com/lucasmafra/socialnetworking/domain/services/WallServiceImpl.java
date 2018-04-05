@@ -1,25 +1,26 @@
-package com.lucasmafra.socialnetworking.infrastructure.data;
+package com.lucasmafra.socialnetworking.domain.services;
 
 import com.lucasmafra.socialnetworking.domain.entities.Post;
-import com.lucasmafra.socialnetworking.domain.services.WallService;
+import com.lucasmafra.socialnetworking.domain.gateways.FollowGateway;
+import com.lucasmafra.socialnetworking.domain.gateways.PostGateway;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.Comparator.*;
 
-public class InMemoryWallService implements WallService {
+public class WallServiceImpl implements WallService {
 
-    private InMemoryPostGateway postGateway;
-    private InMemoryFollowGateway followGateway;
+    private PostGateway postGateway;
+    private FollowGateway followGateway;
 
-    public InMemoryWallService(InMemoryPostGateway postGateway, InMemoryFollowGateway followGateway) {
+    public WallServiceImpl(PostGateway postGateway, FollowGateway followGateway) {
         this.postGateway = postGateway;
         this.followGateway = followGateway;
     }
 
     @Override
-    public List<Post> getWallPostsInReverseChronologicalOrderFor(String user) {
+    public List<Post> getWallFor(String user) {
         List<Post> ownPosts = getOwnPosts(user);
         List<Post> followingUsersPosts = getFollowingUsersPosts(user);
         return combinePostsInReverseChronologicalOrder(ownPosts, followingUsersPosts);
@@ -46,5 +47,4 @@ public class InMemoryWallService implements WallService {
         combinedPosts.sort(comparing(Post::getCreatedDate).reversed());
         return combinedPosts;
     }
-
 }

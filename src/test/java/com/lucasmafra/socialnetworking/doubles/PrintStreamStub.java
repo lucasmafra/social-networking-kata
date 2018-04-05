@@ -1,6 +1,6 @@
 package com.lucasmafra.socialnetworking.doubles;
 
-import com.lucasmafra.socialnetworking.infrastructure.console.utilities.PrintStream;
+import com.lucasmafra.socialnetworking.infrastructure.console.io.PrintStream;
 
 public class PrintStreamStub implements PrintStream {
 

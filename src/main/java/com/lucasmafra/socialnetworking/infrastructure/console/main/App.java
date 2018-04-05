@@ -53,23 +53,23 @@ public class App {
     private List<BaseHandler> createHandlers() {
         List<BaseHandler> handlers = new ArrayList<>();
         handlers.add(createPostHandler());
-        handlers.add(createReadTimelineHandler());
         handlers.add(createFollowHandler());
+        handlers.add(createReadTimelineHandler());
         handlers.add(createReadWallHandler());
         return handlers;
     }
 
     private BaseHandler createPostHandler() {
-        return new PostHandler(context);
+        return new PostOnTimelineHandler(context);
     }
+
+    private BaseHandler createFollowHandler() { return new FollowUserHandler(context); }
 
     private BaseHandler createReadTimelineHandler() {
         ReadTimelineOutputBoundary presenter = new ReadTimelinePresenter(context.getClock());
         ReadTimelineView view = new ReadTimelineView(context.getPrintStream());
         return new ReadTimelineHandler(context, presenter, view);
     }
-
-    private BaseHandler createFollowHandler() { return new FollowHandler(context); }
 
     private BaseHandler createReadWallHandler() {
         ReadWallOutputBoundary presenter = new ReadWallPresenter(context.getClock());

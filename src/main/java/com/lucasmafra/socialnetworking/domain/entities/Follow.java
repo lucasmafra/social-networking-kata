@@ -1,22 +1,20 @@
 package com.lucasmafra.socialnetworking.domain.entities;
 
-import java.util.Date;
-
 public class Follow {
 
     private String follower;
-    private String followed;
+    private String following;
 
-    public Follow(String follower, String followed) {
+    public Follow(String follower, String following) {
         this.follower = follower;
-        this.followed = followed;
+        this.following = following;
     }
 
     public String getFollower() {
         return follower;
     }
 
-    public String getFollowed() {
-        return followed;
+    public String getFollowing() {
+        return following;
     }
 }

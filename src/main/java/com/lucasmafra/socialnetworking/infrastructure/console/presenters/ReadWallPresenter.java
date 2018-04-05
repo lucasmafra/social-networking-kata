@@ -2,14 +2,14 @@ package com.lucasmafra.socialnetworking.infrastructure.console.presenters;
 
 import com.lucasmafra.socialnetworking.domain.usecases.readwall.ReadWallOutputBoundary;
 import com.lucasmafra.socialnetworking.domain.usecases.readwall.ReadWallResponseModel;
-import com.lucasmafra.socialnetworking.infrastructure.Clock;
+import com.lucasmafra.socialnetworking.domain.Clock;
 import com.lucasmafra.socialnetworking.infrastructure.console.viewmodels.ReadWallViewModel;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.lucasmafra.socialnetworking.domain.usecases.readwall.ReadWallResponseModel.*;
-import static com.lucasmafra.socialnetworking.infrastructure.console.utilities.ElapsedTimeFormatter.format;
+import static com.lucasmafra.socialnetworking.infrastructure.utilities.ElapsedTimeFormatter.format;
 import static com.lucasmafra.socialnetworking.infrastructure.console.viewmodels.ReadWallViewModel.*;
 
 public class ReadWallPresenter implements ReadWallOutputBoundary<ReadWallViewModel> {

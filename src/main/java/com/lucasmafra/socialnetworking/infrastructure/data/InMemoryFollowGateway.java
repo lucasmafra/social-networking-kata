@@ -13,8 +13,8 @@ public class InMemoryFollowGateway implements FollowGateway {
     private Map<String, List<String>> followMap = new HashMap<>();
 
     @Override
-    public List<String> getFollowingUsersFor(String userId) {
-        return followMap.get(userId);
+    public List<String> getFollowingUsersFor(String user) {
+        return followMap.get(user);
     }
 
     @Override
@@ -23,7 +23,7 @@ public class InMemoryFollowGateway implements FollowGateway {
         if (followingUsers == null) {
             followingUsers = new ArrayList<>();
         }
-        followingUsers.add(follow.getFollowed());
+        followingUsers.add(follow.getFollowing());
         followMap.put(follow.getFollower(), followingUsers);
     }
 }

@@ -18,7 +18,7 @@ public class ReadWallInteractor implements ReadWallInputBoundary {
 
     @Override
     public void readWall(ReadWallRequestModel request, ReadWallOutputBoundary presenter) {
-        List<Post> posts = this.wallService.getWallPostsInReverseChronologicalOrderFor(request.getUser());
+        List<Post> posts = this.wallService.getWallFor(request.getUser());
         ReadWallResponseModel response = new ReadWallResponseModel(
                 posts.stream()
                 .map(post -> new PostItem(post.getUser(), post.getMessage(), post.getCreatedDate()))

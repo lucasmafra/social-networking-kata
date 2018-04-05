@@ -6,7 +6,7 @@ import org.junit.Test;
 import java.util.Calendar;
 import java.util.Date;
 
-import static com.lucasmafra.socialnetworking.infrastructure.console.utilities.ElapsedTimeFormatter.format;
+import static com.lucasmafra.socialnetworking.infrastructure.utilities.ElapsedTimeFormatter.format;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
