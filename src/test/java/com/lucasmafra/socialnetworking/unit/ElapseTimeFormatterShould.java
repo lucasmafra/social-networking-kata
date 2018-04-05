@@ -31,6 +31,15 @@ public class ElapseTimeFormatterShould {
         assertThat(formatter.format(initialDate, endDate), is("59 seconds ago"));
     }
 
+    @Test public void
+    return_the_elapsed_minutes_for_intervals_greater_than_one_minute_but_less_than_hour() {
+        endDate = createDateFrom(initialDate, Calendar.MINUTE, 1);
+        assertThat(formatter.format(initialDate, endDate), is("1 minute ago"));
+
+        endDate = createDateFrom(initialDate, Calendar.MINUTE, 59);
+        assertThat(formatter.format(initialDate, endDate), is("59 minutes ago"));
+    }
+
     private Date createDateFrom(Date initialDate, int calendarUnit, int amount) {
         Calendar initial = Calendar.getInstance();
         initial.setTime(initialDate);
