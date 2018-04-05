@@ -2,9 +2,7 @@ package com.lucasmafra.socialnetworking.acceptance;
 
 import org.junit.Test;
 
-import java.util.Calendar;
-import java.util.Date;
-
+import static java.util.Calendar.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -14,7 +12,7 @@ public class ReadTimelineTest extends BaseAcceptanceTest {
     user_can_view_users_timeline() {
 
         // Given
-        createPost("Alice", "I love the weather today", 5);
+        createPost("Alice", "I love the weather today", 5, MINUTE);
         updateClock();
 
         // When
@@ -27,8 +25,8 @@ public class ReadTimelineTest extends BaseAcceptanceTest {
 
         // And Given
         resetPrinter();
-        createPost("Bob", "Damn! We lost!", 2);
-        createPost("Bob", "Good game though.", 1);
+        createPost("Bob", "Damn! We lost!", 2, MINUTE);
+        createPost("Bob", "Good game though.", 1, MINUTE);
         updateClock();
 
         // When
@@ -36,23 +34,11 @@ public class ReadTimelineTest extends BaseAcceptanceTest {
 
         // Then
         printedContent = getPrintedContent();
-        expected = "Good game though. (1 minute ago)\n" + "Damn! We lost! (2 minutes ago)\n";
+        expected = "Good game though. (1 minute ago)\n" +
+                   "Damn! We lost! (2 minutes ago)\n";
         assertThat("the timeline was printed correctly for multiple posts", printedContent, is(expected));
     }
 
-    private void createPost(String userId, String message, int minutesAgo) {
-        context.getClock().setNow(getMinutesAgo(minutesAgo));
-        context.getPostGateway().savePost(userId, message);
-    }
 
-    private void updateClock() {
-        context.getClock().setNow(new Date());
-    }
-
-    private Date getMinutesAgo(int minutes) {
-        Calendar date = Calendar.getInstance();
-        date.add(Calendar.MINUTE, -minutes);
-        return date.getTime();
-    }
 
 }

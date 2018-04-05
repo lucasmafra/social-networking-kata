@@ -7,10 +7,9 @@ import java.util.List;
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.junit.Assert.assertThat;
 
-public class FollowingTest extends BaseAcceptanceTest {
+public class FollowTest extends BaseAcceptanceTest {
 
-    @Test
-    public void
+    @Test public void
     user_can_subscribe_to_other_users_timeline() {
 
         // When
@@ -24,7 +23,4 @@ public class FollowingTest extends BaseAcceptanceTest {
         assertThat("the user is following the correct users", followings, containsInAnyOrder("Alice", "Bob"));
     }
 
-    private List<String> getFollowingUsersFor(String userId) {
-        return context.getFollowGateway().getFollowingUsersFor(userId);
-    }
 }
