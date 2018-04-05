@@ -1,14 +1,15 @@
 package com.lucasmafra.socialnetworking.infrastructure.console.main;
 
-import com.lucasmafra.socialnetworking.domain.gateways.FollowGateway;
-import com.lucasmafra.socialnetworking.domain.gateways.PostGateway;
-import com.lucasmafra.socialnetworking.domain.services.WallService;
 import com.lucasmafra.socialnetworking.domain.Clock;
 import com.lucasmafra.socialnetworking.domain.ClockImpl;
+import com.lucasmafra.socialnetworking.domain.gateways.FollowGateway;
+import com.lucasmafra.socialnetworking.domain.gateways.PostGateway;
+import com.lucasmafra.socialnetworking.infrastructure.console.io.BufferedReader;
+import com.lucasmafra.socialnetworking.infrastructure.console.io.BufferedReaderImpl;
+import com.lucasmafra.socialnetworking.infrastructure.console.io.PrintStream;
+import com.lucasmafra.socialnetworking.infrastructure.console.io.PrintStreamImpl;
 import com.lucasmafra.socialnetworking.infrastructure.data.InMemoryFollowGateway;
 import com.lucasmafra.socialnetworking.infrastructure.data.InMemoryPostGateway;
-import com.lucasmafra.socialnetworking.infrastructure.console.io.*;
-import com.lucasmafra.socialnetworking.domain.services.WallServiceImpl;
 
 public class AppContext {
 

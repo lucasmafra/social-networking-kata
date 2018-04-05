@@ -5,7 +5,7 @@ import com.lucasmafra.socialnetworking.domain.services.WallService;
 
 import java.util.List;
 
-import static com.lucasmafra.socialnetworking.domain.usecases.readwall.ReadWallResponseModel.*;
+import static com.lucasmafra.socialnetworking.domain.usecases.readwall.ReadWallResponseModel.PostItem;
 import static java.util.stream.Collectors.toList;
 
 public class ReadWallInteractor implements ReadWallInputBoundary {
@@ -21,8 +21,8 @@ public class ReadWallInteractor implements ReadWallInputBoundary {
         List<Post> posts = this.wallService.getWallFor(request.getUser());
         ReadWallResponseModel response = new ReadWallResponseModel(
                 posts.stream()
-                .map(post -> new PostItem(post.getUser(), post.getMessage(), post.getCreatedDate()))
-                .collect(toList())
+                        .map(post -> new PostItem(post.getUser(), post.getMessage(), post.getCreatedDate()))
+                        .collect(toList())
         );
         presenter.present(response);
     }

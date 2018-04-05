@@ -63,7 +63,9 @@ public class App {
         return new PostOnTimelineHandler(context);
     }
 
-    private BaseHandler createFollowHandler() { return new FollowUserHandler(context); }
+    private BaseHandler createFollowHandler() {
+        return new FollowUserHandler(context);
+    }
 
     private BaseHandler createReadTimelineHandler() {
         ReadTimelineOutputBoundary presenter = new ReadTimelinePresenter(context.getClock());

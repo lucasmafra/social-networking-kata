@@ -1,14 +1,14 @@
 package com.lucasmafra.socialnetworking.infrastructure.data;
 
+import com.lucasmafra.socialnetworking.domain.Clock;
 import com.lucasmafra.socialnetworking.domain.entities.Post;
 import com.lucasmafra.socialnetworking.domain.gateways.PostGateway;
-import com.lucasmafra.socialnetworking.domain.Clock;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.Comparator.comparing;
-import static java.util.stream.Collectors.*;
+import static java.util.stream.Collectors.toList;
 
 public class InMemoryPostGateway implements PostGateway {
 
@@ -22,7 +22,7 @@ public class InMemoryPostGateway implements PostGateway {
     @Override
     public List<Post> getPostsInReverseChronologicalOrderFor(String user) {
         return posts.stream()
-                .filter( post -> post.getUser().equals(user))
+                .filter(post -> post.getUser().equals(user))
                 .sorted(comparing(Post::getCreatedDate).reversed())
                 .collect(toList());
     }

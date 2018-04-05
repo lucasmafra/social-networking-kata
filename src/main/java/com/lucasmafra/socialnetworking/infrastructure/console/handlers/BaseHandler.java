@@ -9,8 +9,8 @@ public abstract class BaseHandler {
     abstract Pattern getInputPattern();
 
     boolean canHandle(String input) {
-            Pattern pattern = getInputPattern();
-            return pattern.matcher(input).matches();
+        Pattern pattern = getInputPattern();
+        return pattern.matcher(input).matches();
     }
 }
 

@@ -7,7 +7,7 @@ import com.lucasmafra.socialnetworking.domain.gateways.PostGateway;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.util.Comparator.*;
+import static java.util.Comparator.comparing;
 
 public class WallServiceImpl implements WallService {
 
@@ -34,10 +34,10 @@ public class WallServiceImpl implements WallService {
         List<String> followingUsers = followGateway.getFollowingUsersFor(user);
         List<Post> followingUsersPost = new ArrayList<>();
         followingUsers.stream()
-               .forEach(followingUser-> {
-                   List<Post> userPosts = getOwnPosts(followingUser);
-                   followingUsersPost.addAll(userPosts);
-               });
+                .forEach(followingUser -> {
+                    List<Post> userPosts = getOwnPosts(followingUser);
+                    followingUsersPost.addAll(userPosts);
+                });
         return followingUsersPost;
     }
 

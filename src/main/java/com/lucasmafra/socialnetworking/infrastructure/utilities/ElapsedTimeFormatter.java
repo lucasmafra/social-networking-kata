@@ -16,21 +16,27 @@ public class ElapsedTimeFormatter {
 
     public static String format(Date from, Date until) {
         UnitTime unitTime = unitTimeFrom(from, until);
-        return buildMessage(unitTime.amount , unitTimeDictionary.get(unitTime.unit));
+        return buildMessage(unitTime.amount, unitTimeDictionary.get(unitTime.unit));
     }
 
     private static UnitTime unitTimeFrom(Date from, Date until) {
-        List<ChronoUnit> units = getUnitsInDescendingOrder(unitTimeDictionary.keySet());
-        for (ChronoUnit unit: units) {
+        List<ChronoUnit> units = getUnitsInDescendingOrder();
+
+        // We try to find the proper unit by looking from the biggest unit (days) to the smallest (seconds)
+        for (ChronoUnit unit : units) {
             Long duration = unit.between(from.toInstant(), until.toInstant());
-            if (duration > 0) {
+            if (hasAtLeastOneUnit(duration)) {
                 return new UnitTime(unit, duration);
             }
         }
         return null;
     }
 
-    private static List<ChronoUnit> getUnitsInDescendingOrder(Set<ChronoUnit> chronoUnits) {
+    private static boolean hasAtLeastOneUnit(Long duration) {
+        return duration > 0;
+    }
+
+    private static List<ChronoUnit> getUnitsInDescendingOrder() {
         List<ChronoUnit> units = new ArrayList<>(unitTimeDictionary.keySet());
         Collections.sort(units);
         Collections.reverse(units);

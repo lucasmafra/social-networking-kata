@@ -1,14 +1,14 @@
 package com.lucasmafra.socialnetworking.infrastructure.console.presenters;
 
+import com.lucasmafra.socialnetworking.domain.Clock;
 import com.lucasmafra.socialnetworking.domain.usecases.readtimeline.ReadTimelineOutputBoundary;
 import com.lucasmafra.socialnetworking.domain.usecases.readtimeline.ReadTimelineResponseModel;
-import com.lucasmafra.socialnetworking.domain.Clock;
 import com.lucasmafra.socialnetworking.infrastructure.console.viewmodels.ReadTimelineViewModel;
 
 import java.util.List;
 
+import static com.lucasmafra.socialnetworking.infrastructure.console.viewmodels.ReadTimelineViewModel.ViewablePost;
 import static com.lucasmafra.socialnetworking.infrastructure.utilities.ElapsedTimeFormatter.format;
-import static com.lucasmafra.socialnetworking.infrastructure.console.viewmodels.ReadTimelineViewModel.*;
 import static java.util.stream.Collectors.toList;
 
 public class ReadTimelinePresenter implements ReadTimelineOutputBoundary<ReadTimelineViewModel> {
@@ -34,7 +34,7 @@ public class ReadTimelinePresenter implements ReadTimelineOutputBoundary<ReadTim
         List<ViewablePost> timeline =
                 response.getTimeline()
                         .stream()
-                        .map( postItem -> makeViewablePost(postItem))
+                        .map(postItem -> makeViewablePost(postItem))
                         .collect(toList());
 
         return new ReadTimelineViewModel(timeline);

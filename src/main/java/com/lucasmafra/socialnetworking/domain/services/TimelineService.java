@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface TimelineService {
     void postToTimeline(String user, String message);
+
     List<Post> getTimelineFor(String user);
 }

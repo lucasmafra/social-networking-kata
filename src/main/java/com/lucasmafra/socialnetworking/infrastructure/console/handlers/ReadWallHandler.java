@@ -1,8 +1,8 @@
 package com.lucasmafra.socialnetworking.infrastructure.console.handlers;
 
+import com.lucasmafra.socialnetworking.domain.services.WallService;
 import com.lucasmafra.socialnetworking.domain.services.WallServiceImpl;
 import com.lucasmafra.socialnetworking.domain.usecases.View;
-import com.lucasmafra.socialnetworking.domain.services.WallService;
 import com.lucasmafra.socialnetworking.domain.usecases.readwall.*;
 import com.lucasmafra.socialnetworking.infrastructure.console.main.AppContext;
 

@@ -1,6 +1,5 @@
 package com.lucasmafra.socialnetworking.infrastructure.console.handlers;
 
-import com.lucasmafra.socialnetworking.domain.gateways.PostGateway;
 import com.lucasmafra.socialnetworking.domain.services.TimelineService;
 import com.lucasmafra.socialnetworking.domain.services.TimelineServiceImpl;
 import com.lucasmafra.socialnetworking.domain.usecases.postontimeline.PostOnTimelineController;

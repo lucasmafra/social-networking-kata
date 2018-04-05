@@ -11,7 +11,7 @@ public class HandlerMatcher {
     }
 
     public BaseHandler match(String input) {
-        for (BaseHandler handler: handlers) {
+        for (BaseHandler handler : handlers) {
             if (handler.canHandle(input)) {
                 return handler;
             }
