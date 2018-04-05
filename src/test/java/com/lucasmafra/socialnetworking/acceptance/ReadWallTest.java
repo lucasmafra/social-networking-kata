@@ -5,18 +5,21 @@ import com.lucasmafra.socialnetworking.infrastructure.console.main.App;
 import org.junit.Before;
 import org.junit.Test;
 
-import static java.util.Calendar.*;
+import static java.util.Calendar.MINUTE;
+import static java.util.Calendar.SECOND;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 public class ReadWallTest extends BaseAcceptanceTest {
 
-    @Before public void initialize() {
+    @Before
+    public void initialize() {
         context = new AppContextStub();
         app = new App(context);
     }
 
-    @Test public void
+    @Test
+    public void
     user_can_view_an_aggregated_list_of_all_subscriptions() {
 
         // Given
@@ -31,7 +34,7 @@ public class ReadWallTest extends BaseAcceptanceTest {
         // Then
         String printedContent = getPrintedContent();
         String expected = "Charlie - I'm in New York today! Anyone want to have a coffee? (2 seconds ago)\n" +
-                          "Alice - I love the weather today (5 minutes ago)\n";
+                "Alice - I love the weather today (5 minutes ago)\n";
         assertThat("the timeline was printed correctly", printedContent, is(expected));
 
         // And Given
@@ -47,9 +50,9 @@ public class ReadWallTest extends BaseAcceptanceTest {
         // Then
         printedContent = getPrintedContent();
         expected = "Charlie - I'm in New York today! Anyone want to have a coffee? (2 seconds ago)\n" +
-                   "Bob - Good game though. (1 minute ago)\n" +
-                   "Bob - Damn! We lost! (2 minutes ago)\n" +
-                   "Alice - I love the weather today (5 minutes ago)\n";
+                "Bob - Good game though. (1 minute ago)\n" +
+                "Bob - Damn! We lost! (2 minutes ago)\n" +
+                "Alice - I love the weather today (5 minutes ago)\n";
         assertThat("the timeline was printed correctly", printedContent, is(expected));
 
     }

@@ -1,9 +1,9 @@
 package com.lucasmafra.socialnetworking.domain.usecases.readtimeline;
 
-public interface ReadTimelineOutputBoundary<ViewModel> {
+public interface ReadTimelineOutputBoundary {
 
     void present(ReadTimelineResponseModel response);
 
-    ViewModel getViewModel();
+    ReadTimelineViewModel getViewModel();
 
 }

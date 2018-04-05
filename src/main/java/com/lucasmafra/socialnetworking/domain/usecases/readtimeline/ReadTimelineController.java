@@ -1,20 +1,17 @@
 package com.lucasmafra.socialnetworking.domain.usecases.readtimeline;
 
-import com.lucasmafra.socialnetworking.domain.usecases.Controller;
-import com.lucasmafra.socialnetworking.domain.usecases.View;
-
-public class ReadTimelineController implements Controller {
+public class ReadTimelineController {
 
     private ReadTimelineRequestModel parsedInput;
     private ReadTimelineInputBoundary useCase;
     private ReadTimelineOutputBoundary presenter;
-    private View view;
+    private ReadTimelineView view;
 
     public ReadTimelineController(
             ReadTimelineRequestModel parsedInput,
             ReadTimelineInputBoundary useCase,
             ReadTimelineOutputBoundary presenter,
-            View view
+            ReadTimelineView view
     ) {
         this.useCase = useCase;
         this.parsedInput = parsedInput;
@@ -22,7 +19,6 @@ public class ReadTimelineController implements Controller {
         this.view = view;
     }
 
-    @Override
     public void control() {
         useCase.readTimeline(parsedInput, presenter);
         view.generateView(presenter.getViewModel());

@@ -5,6 +5,7 @@ import com.lucasmafra.socialnetworking.doubles.AppContextStub;
 import com.lucasmafra.socialnetworking.infrastructure.console.main.App;
 import org.junit.Before;
 import org.junit.Test;
+
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -14,13 +15,15 @@ import static org.junit.Assert.assertThat;
 
 public class PostTest extends BaseAcceptanceTest {
 
-    @Before public void
+    @Before
+    public void
     initialize() {
         context = new AppContextStub();
         app = new App(context);
     }
 
-    @Test public void
+    @Test
+    public void
     user_can_publish_message_to_personal_timeline() {
 
         // Given
@@ -38,7 +41,8 @@ public class PostTest extends BaseAcceptanceTest {
         assertThat("the post has correct created date", post.getCreatedDate(), is(now));
     }
 
-    @Test public void
+    @Test
+    public void
     user_can_publish_multiple_messages_to_personal_timeline() {
 
         // When

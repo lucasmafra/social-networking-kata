@@ -19,6 +19,8 @@ public class AppContextStub extends AppContext {
     }
 
     @Override
-    public ClockStub getClock() { return clock; }
+    public ClockStub getClock() {
+        return clock;
+    }
 
 }

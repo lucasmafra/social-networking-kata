@@ -1,8 +1,6 @@
 package com.lucasmafra.socialnetworking.domain.usecases.followuser;
 
-import com.lucasmafra.socialnetworking.domain.usecases.Controller;
-
-public class FollowUserController implements Controller {
+public class FollowUserController {
 
     private FollowUserRequestModel parsedInput;
     private FollowUserInputBoundary useCase;
@@ -15,7 +13,6 @@ public class FollowUserController implements Controller {
         this.parsedInput = parsedInput;
     }
 
-    @Override
     public void control() {
         useCase.follow(parsedInput);
     }

@@ -1,6 +1,6 @@
 package com.lucasmafra.socialnetworking.doubles;
 
-import com.lucasmafra.socialnetworking.domain.Clock;
+import com.lucasmafra.socialnetworking.domain.utilities.Clock;
 
 import java.util.Calendar;
 import java.util.Date;

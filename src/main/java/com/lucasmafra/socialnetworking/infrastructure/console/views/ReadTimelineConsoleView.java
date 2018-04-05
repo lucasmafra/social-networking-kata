@@ -1,14 +1,14 @@
 package com.lucasmafra.socialnetworking.infrastructure.console.views;
 
-import com.lucasmafra.socialnetworking.domain.usecases.View;
+import com.lucasmafra.socialnetworking.domain.usecases.readtimeline.ReadTimelineView;
+import com.lucasmafra.socialnetworking.domain.usecases.readtimeline.ReadTimelineViewModel;
 import com.lucasmafra.socialnetworking.infrastructure.console.io.PrintStream;
-import com.lucasmafra.socialnetworking.infrastructure.console.viewmodels.ReadTimelineViewModel;
 
-public class ReadTimelineView implements View<ReadTimelineViewModel> {
+public class ReadTimelineConsoleView implements ReadTimelineView {
 
     private PrintStream printStream;
 
-    public ReadTimelineView(PrintStream printStream) {
+    public ReadTimelineConsoleView(PrintStream printStream) {
         this.printStream = printStream;
     }
 

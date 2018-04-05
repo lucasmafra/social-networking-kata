@@ -1,9 +1,9 @@
 package com.lucasmafra.socialnetworking.infrastructure.console.main;
 
-import com.lucasmafra.socialnetworking.domain.Clock;
-import com.lucasmafra.socialnetworking.domain.ClockImpl;
 import com.lucasmafra.socialnetworking.domain.gateways.FollowGateway;
 import com.lucasmafra.socialnetworking.domain.gateways.PostGateway;
+import com.lucasmafra.socialnetworking.domain.utilities.Clock;
+import com.lucasmafra.socialnetworking.domain.utilities.ClockImpl;
 import com.lucasmafra.socialnetworking.infrastructure.console.io.BufferedReader;
 import com.lucasmafra.socialnetworking.infrastructure.console.io.BufferedReaderImpl;
 import com.lucasmafra.socialnetworking.infrastructure.console.io.PrintStream;

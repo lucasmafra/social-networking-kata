@@ -2,7 +2,6 @@ package com.lucasmafra.socialnetworking.infrastructure.console.handlers;
 
 import com.lucasmafra.socialnetworking.domain.services.WallService;
 import com.lucasmafra.socialnetworking.domain.services.WallServiceImpl;
-import com.lucasmafra.socialnetworking.domain.usecases.View;
 import com.lucasmafra.socialnetworking.domain.usecases.readwall.*;
 import com.lucasmafra.socialnetworking.infrastructure.console.main.AppContext;
 
@@ -13,9 +12,9 @@ public class ReadWallHandler extends BaseHandler {
 
     private AppContext context;
     private ReadWallOutputBoundary presenter;
-    private View view;
+    private ReadWallView view;
 
-    public ReadWallHandler(AppContext context, ReadWallOutputBoundary presenter, View view) {
+    public ReadWallHandler(AppContext context, ReadWallOutputBoundary presenter, ReadWallView view) {
         this.context = context;
         this.presenter = presenter;
         this.view = view;

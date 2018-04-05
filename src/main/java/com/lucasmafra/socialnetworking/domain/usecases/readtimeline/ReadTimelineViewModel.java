@@ -1,4 +1,4 @@
-package com.lucasmafra.socialnetworking.infrastructure.console.viewmodels;
+package com.lucasmafra.socialnetworking.domain.usecases.readtimeline;
 
 import java.util.List;
 

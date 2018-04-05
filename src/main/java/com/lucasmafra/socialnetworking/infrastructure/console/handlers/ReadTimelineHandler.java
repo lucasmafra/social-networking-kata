@@ -2,7 +2,6 @@ package com.lucasmafra.socialnetworking.infrastructure.console.handlers;
 
 import com.lucasmafra.socialnetworking.domain.services.TimelineService;
 import com.lucasmafra.socialnetworking.domain.services.TimelineServiceImpl;
-import com.lucasmafra.socialnetworking.domain.usecases.View;
 import com.lucasmafra.socialnetworking.domain.usecases.readtimeline.*;
 import com.lucasmafra.socialnetworking.infrastructure.console.main.AppContext;
 
@@ -13,9 +12,9 @@ public class ReadTimelineHandler extends BaseHandler {
 
     private AppContext context;
     private ReadTimelineOutputBoundary presenter;
-    private View view;
+    private ReadTimelineView view;
 
-    public ReadTimelineHandler(AppContext context, ReadTimelineOutputBoundary presenter, View view) {
+    public ReadTimelineHandler(AppContext context, ReadTimelineOutputBoundary presenter, ReadTimelineView view) {
         this.context = context;
         this.presenter = presenter;
         this.view = view;

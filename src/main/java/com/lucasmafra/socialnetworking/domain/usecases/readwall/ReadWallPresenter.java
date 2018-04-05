@@ -1,18 +1,15 @@
-package com.lucasmafra.socialnetworking.infrastructure.console.presenters;
+package com.lucasmafra.socialnetworking.domain.usecases.readwall;
 
-import com.lucasmafra.socialnetworking.domain.Clock;
-import com.lucasmafra.socialnetworking.domain.usecases.readwall.ReadWallOutputBoundary;
-import com.lucasmafra.socialnetworking.domain.usecases.readwall.ReadWallResponseModel;
-import com.lucasmafra.socialnetworking.infrastructure.console.viewmodels.ReadWallViewModel;
+import com.lucasmafra.socialnetworking.domain.utilities.Clock;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.lucasmafra.socialnetworking.domain.usecases.readwall.ReadWallResponseModel.PostItem;
-import static com.lucasmafra.socialnetworking.infrastructure.console.viewmodels.ReadWallViewModel.ViewablePost;
-import static com.lucasmafra.socialnetworking.infrastructure.utilities.ElapsedTimeFormatter.format;
+import static com.lucasmafra.socialnetworking.domain.usecases.readwall.ReadWallViewModel.ViewablePost;
+import static com.lucasmafra.socialnetworking.domain.utilities.ElapsedTimeFormatter.format;
 
-public class ReadWallPresenter implements ReadWallOutputBoundary<ReadWallViewModel> {
+public class ReadWallPresenter implements ReadWallOutputBoundary {
 
     private Clock clock;
     private ReadWallViewModel viewModel;

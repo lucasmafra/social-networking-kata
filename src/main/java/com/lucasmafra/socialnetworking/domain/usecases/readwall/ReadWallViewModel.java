@@ -1,4 +1,4 @@
-package com.lucasmafra.socialnetworking.infrastructure.console.viewmodels;
+package com.lucasmafra.socialnetworking.domain.usecases.readwall;
 
 import java.util.List;
 

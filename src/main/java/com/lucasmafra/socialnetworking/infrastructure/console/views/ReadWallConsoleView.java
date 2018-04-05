@@ -1,14 +1,14 @@
 package com.lucasmafra.socialnetworking.infrastructure.console.views;
 
-import com.lucasmafra.socialnetworking.domain.usecases.View;
+import com.lucasmafra.socialnetworking.domain.usecases.readwall.ReadWallView;
+import com.lucasmafra.socialnetworking.domain.usecases.readwall.ReadWallViewModel;
 import com.lucasmafra.socialnetworking.infrastructure.console.io.PrintStream;
-import com.lucasmafra.socialnetworking.infrastructure.console.viewmodels.ReadWallViewModel;
 
-public class ReadWallView implements View<ReadWallViewModel> {
+public class ReadWallConsoleView implements ReadWallView {
 
     PrintStream printStream;
 
-    public ReadWallView(PrintStream printStream) {
+    public ReadWallConsoleView(PrintStream printStream) {
         this.printStream = printStream;
     }
 

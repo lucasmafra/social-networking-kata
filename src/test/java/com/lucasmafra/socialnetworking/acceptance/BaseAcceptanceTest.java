@@ -4,7 +4,6 @@ import com.lucasmafra.socialnetworking.domain.entities.Follow;
 import com.lucasmafra.socialnetworking.domain.entities.Post;
 import com.lucasmafra.socialnetworking.doubles.AppContextStub;
 import com.lucasmafra.socialnetworking.infrastructure.console.main.App;
-import org.junit.Before;
 
 import java.util.Calendar;
 import java.util.Date;

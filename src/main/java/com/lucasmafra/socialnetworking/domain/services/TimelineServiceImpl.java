@@ -1,8 +1,8 @@
 package com.lucasmafra.socialnetworking.domain.services;
 
-import com.lucasmafra.socialnetworking.domain.Clock;
 import com.lucasmafra.socialnetworking.domain.entities.Post;
 import com.lucasmafra.socialnetworking.domain.gateways.PostGateway;
+import com.lucasmafra.socialnetworking.domain.utilities.Clock;
 
 import java.util.List;
 
