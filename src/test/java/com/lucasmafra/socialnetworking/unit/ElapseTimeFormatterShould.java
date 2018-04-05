@@ -23,12 +23,12 @@ public class ElapseTimeFormatterShould {
     }
 
     @Test public void
-    return_a_moment_ago_for_two_dates_between_less_than_one_minute() {
-        endDate = createDateFrom(initialDate, Calendar.SECOND, 0);
-        assertThat(formatter.format(initialDate, endDate), is("a moment ago"));
+    return_the_elapsed_seconds_for_intervals_less_than_one_minute() {
+        endDate = createDateFrom(initialDate, Calendar.SECOND, 1);
+        assertThat(formatter.format(initialDate, endDate), is("1 second ago"));
 
         endDate = createDateFrom(initialDate, Calendar.SECOND, 59);
-        assertThat(formatter.format(initialDate, endDate), is("a moment ago"));
+        assertThat(formatter.format(initialDate, endDate), is("59 seconds ago"));
     }
 
     private Date createDateFrom(Date initialDate, int calendarUnit, int amount) {
