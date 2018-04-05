@@ -14,10 +14,10 @@ public class PostHandler implements Handler {
 
     private AppContext context;
     private static final String USER_ID = "^(\\w+)";
-    private static final String SEPARATOR = " -> ";
+    private static final String ACTION = " -> ";
     private static final String MESSAGE = "(.*)$";
 
-    private static final Pattern INPUT_PATTERN = Pattern.compile(USER_ID + SEPARATOR + MESSAGE);
+    private static final Pattern INPUT_PATTERN = Pattern.compile(USER_ID + ACTION + MESSAGE);
 
     public PostHandler(AppContext context) {
         this.context = context;

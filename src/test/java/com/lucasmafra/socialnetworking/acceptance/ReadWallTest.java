@@ -22,7 +22,7 @@ public class ReadWallTest extends BaseAcceptanceTest {
 
         // Then
         String printedContent = getPrintedContent();
-        String expected = "Charle - I'm in New York today! Anyone want to have a coffee? (2 seconds ago)\n" +
+        String expected = "Charlie - I'm in New York today! Anyone want to have a coffee? (2 seconds ago)\n" +
                           "Alice - I love the weather today (5 minutes ago)\n";
         assertThat("the timeline was printed correctly", printedContent, is(expected));
 
@@ -38,9 +38,9 @@ public class ReadWallTest extends BaseAcceptanceTest {
 
         // Then
         printedContent = getPrintedContent();
-        expected = "Charle - I'm in New York today! Anyone want to have a coffee? (2 seconds ago)\n" +
+        expected = "Charlie - I'm in New York today! Anyone want to have a coffee? (2 seconds ago)\n" +
                    "Bob - Good game though. (1 minute ago)\n" +
-                   "Damn! We lost! (2 minute ago)\n" +
+                   "Bob - Damn! We lost! (2 minutes ago)\n" +
                    "Alice - I love the weather today (5 minutes ago)\n";
         assertThat("the timeline was printed correctly", printedContent, is(expected));
 

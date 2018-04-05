@@ -14,10 +14,10 @@ public class FollowHandler implements Handler {
 
     private AppContext context;
     private static final String FOLLOWER_ID = "^(\\w+)";
-    private static final String SEPARATOR = " follows ";
+    private static final String ACTION = " follows ";
     private static final String FOLLOWED_ID = "(\\w+)";
 
-    private static final Pattern INPUT_PATTERN = Pattern.compile(FOLLOWER_ID + SEPARATOR + FOLLOWED_ID);
+    private static final Pattern INPUT_PATTERN = Pattern.compile(FOLLOWER_ID + ACTION + FOLLOWED_ID);
 
     public FollowHandler(AppContext context) {
         this.context = context;
