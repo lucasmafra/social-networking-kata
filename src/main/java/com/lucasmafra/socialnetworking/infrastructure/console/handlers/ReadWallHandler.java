@@ -1,10 +1,10 @@
 package com.lucasmafra.socialnetworking.infrastructure.console.handlers;
 
-import com.lucasmafra.socialnetworking.domain.controller.ViewController;
+import com.lucasmafra.socialnetworking.domain.usecases.View;
 import com.lucasmafra.socialnetworking.domain.gateways.FollowGateway;
 import com.lucasmafra.socialnetworking.domain.gateways.PostGateway;
 import com.lucasmafra.socialnetworking.domain.services.WallService;
-import com.lucasmafra.socialnetworking.domain.services.WallServiceImpl;
+import com.lucasmafra.socialnetworking.infrastructure.data.InMemoryWallService;
 import com.lucasmafra.socialnetworking.domain.usecases.readwall.*;
 import com.lucasmafra.socialnetworking.infrastructure.console.main.AppContext;
 
@@ -15,13 +15,13 @@ public class ReadWallHandler implements Handler {
 
     private AppContext context;
     private ReadWallOutputBoundary presenter;
-    private ViewController view;
+    private View view;
 
     private static final String USER_ID = "^(\\w+)";
     private static final String ACTION = " wall$";
     private static final Pattern INPUT_PATTERN = Pattern.compile(USER_ID + ACTION);
 
-    public ReadWallHandler(AppContext context, ReadWallOutputBoundary presenter, ViewController view) {
+    public ReadWallHandler(AppContext context, ReadWallOutputBoundary presenter, View view) {
         this.context = context;
         this.presenter = presenter;
         this.view = view;
@@ -36,7 +36,7 @@ public class ReadWallHandler implements Handler {
     public void handle(String input) {
         PostGateway postGateway = context.getPostGateway();
         FollowGateway followGateway = context.getFollowGateway();
-        WallService wallService = new WallServiceImpl(postGateway, followGateway);
+        WallService wallService = new InMemoryWallService(postGateway, followGateway);
         ReadWallInputBoundary useCase = new ReadWallInteractor(wallService);
         ReadWallController controller = new ReadWallController(parseInput(input), useCase, presenter, view);
         controller.control();

@@ -23,7 +23,7 @@ public class InMemoryPostGateway implements PostGateway {
     @Override
     public List<Post> getPostsInReverseChronologicalOrder(String userId) {
         return posts.stream()
-                .filter( post -> post.getUserId().equals(userId))
+                .filter( post -> post.getUser().equals(userId))
                 .sorted(comparing(Post::getCreatedDate).reversed())
                 .collect(toList());
     }

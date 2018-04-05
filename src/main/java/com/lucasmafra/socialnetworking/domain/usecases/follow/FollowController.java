@@ -1,6 +1,6 @@
 package com.lucasmafra.socialnetworking.domain.usecases.follow;
 
-import com.lucasmafra.socialnetworking.domain.controller.Controller;
+import com.lucasmafra.socialnetworking.domain.usecases.Controller;
 
 public class FollowController implements Controller {
 

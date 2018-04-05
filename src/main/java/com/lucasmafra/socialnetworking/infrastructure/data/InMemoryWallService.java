@@ -1,28 +1,27 @@
-package com.lucasmafra.socialnetworking.domain.services;
+package com.lucasmafra.socialnetworking.infrastructure.data;
 
 import com.lucasmafra.socialnetworking.domain.entities.Post;
-import com.lucasmafra.socialnetworking.domain.gateways.FollowGateway;
-import com.lucasmafra.socialnetworking.domain.gateways.PostGateway;
+import com.lucasmafra.socialnetworking.domain.services.WallService;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.Comparator.*;
 
-public class WallServiceImpl implements WallService {
+public class InMemoryWallService implements WallService {
 
-    private PostGateway postGateway;
-    private FollowGateway followGateway;
+    private InMemoryPostGateway postGateway;
+    private InMemoryFollowGateway followGateway;
 
-    public WallServiceImpl(PostGateway postGateway, FollowGateway followGateway) {
+    public InMemoryWallService(InMemoryPostGateway postGateway, InMemoryFollowGateway followGateway) {
         this.postGateway = postGateway;
         this.followGateway = followGateway;
     }
 
     @Override
-    public List<Post> getWallPostsInReverseChronologicalOrderFor(String userId) {
-        List<Post> authorPosts = postGateway.getPostsInReverseChronologicalOrder(userId);
-        List<Post> followingUsersPosts = getFollowingUsersPostFor(userId);
+    public List<Post> getWallPostsInReverseChronologicalOrderFor(String user) {
+        List<Post> authorPosts = postGateway.getPostsInReverseChronologicalOrder(user);
+        List<Post> followingUsersPosts = getFollowingUsersPostFor(user);
         return combinePostsInReverseChronologicalOrder(authorPosts, followingUsersPosts);
     }
 

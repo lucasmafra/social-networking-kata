@@ -1,16 +1,16 @@
 package com.lucasmafra.socialnetworking.infrastructure.console.views;
 
-import com.lucasmafra.socialnetworking.domain.controller.ViewController;
+import com.lucasmafra.socialnetworking.domain.usecases.View;
 import com.lucasmafra.socialnetworking.infrastructure.console.utilities.PrintStream;
 import com.lucasmafra.socialnetworking.infrastructure.console.viewmodels.ReadWallViewModel;
 
 import static com.lucasmafra.socialnetworking.infrastructure.console.viewmodels.ReadWallViewModel.*;
 
-public class ReadWallViewController implements ViewController<ReadWallViewModel> {
+public class ReadWallView implements View<ReadWallViewModel> {
 
     PrintStream printStream;
 
-    public ReadWallViewController(PrintStream printStream) {
+    public ReadWallView(PrintStream printStream) {
         this.printStream = printStream;
     }
 

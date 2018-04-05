@@ -1,5 +1,6 @@
 package com.lucasmafra.socialnetworking.domain.usecases.follow;
 
+import com.lucasmafra.socialnetworking.domain.entities.Follow;
 import com.lucasmafra.socialnetworking.domain.gateways.FollowGateway;
 
 public class FollowInteractor implements FollowInputBoundary {
@@ -12,6 +13,6 @@ public class FollowInteractor implements FollowInputBoundary {
 
     @Override
     public void follow(FollowRequestModel request) {
-        this.followGateway.saveFollow(request.getFollower(), request.getFollowing());
+        this.followGateway.saveFollow(new Follow(request.getFollower(), request.getFollowing()));
     }
 }

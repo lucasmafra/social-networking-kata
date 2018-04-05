@@ -4,13 +4,13 @@ import java.util.Date;
 
 public class Post {
 
-    private String userId;
+    private String user;
     private String message;
     private Date createdDate;
 
-    public Post(String userId, String message, Date createdDate) {
+    public Post(String user, String message, Date createdDate) {
         this.message = message;
-        this.userId = userId;
+        this.user = user;
         this.createdDate = createdDate;
     }
 
@@ -18,8 +18,8 @@ public class Post {
         return message;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getUser() {
+        return user;
     }
 
     public Date getCreatedDate() {

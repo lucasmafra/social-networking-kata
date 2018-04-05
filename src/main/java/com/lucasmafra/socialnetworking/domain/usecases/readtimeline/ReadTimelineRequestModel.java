@@ -2,13 +2,13 @@ package com.lucasmafra.socialnetworking.domain.usecases.readtimeline;
 
 public class ReadTimelineRequestModel {
 
-    private String userId;
+    private String user;
 
-    public ReadTimelineRequestModel(String userId) {
-        this.userId = userId;
+    public ReadTimelineRequestModel(String user) {
+        this.user = user;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getUser() {
+        return user;
     }
 }

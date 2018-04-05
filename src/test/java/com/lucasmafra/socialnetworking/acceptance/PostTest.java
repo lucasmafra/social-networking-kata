@@ -24,7 +24,7 @@ public class PostTest extends BaseAcceptanceTest {
         List<Post> posts = getPosts("Alice");
         assertThat("1 post was created", posts.size(), is(1));
         Post post = posts.get(0);
-        assertThat("the post has correct user id", post.getUserId(), is("Alice"));
+        assertThat("the post has correct user id", post.getUser(), is("Alice"));
         assertThat("the post has correct message", post.getMessage(), is("I love the weather today"));
         assertThat("the post has correct created date", post.getCreatedDate(), is(now));
     }

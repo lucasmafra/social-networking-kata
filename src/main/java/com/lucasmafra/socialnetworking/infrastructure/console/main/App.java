@@ -5,8 +5,8 @@ import com.lucasmafra.socialnetworking.domain.usecases.readwall.ReadWallOutputBo
 import com.lucasmafra.socialnetworking.infrastructure.console.handlers.*;
 import com.lucasmafra.socialnetworking.infrastructure.console.presenters.ReadTimelinePresenter;
 import com.lucasmafra.socialnetworking.infrastructure.console.presenters.ReadWallPresenter;
-import com.lucasmafra.socialnetworking.infrastructure.console.views.ReadTimelineViewController;
-import com.lucasmafra.socialnetworking.infrastructure.console.views.ReadWallViewController;
+import com.lucasmafra.socialnetworking.infrastructure.console.views.ReadTimelineView;
+import com.lucasmafra.socialnetworking.infrastructure.console.views.ReadWallView;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -66,7 +66,7 @@ public class App {
 
     private Handler createReadTimelineHandler() {
         ReadTimelineOutputBoundary presenter = new ReadTimelinePresenter(context.getClock());
-        ReadTimelineViewController view = new ReadTimelineViewController(context.getPrintStream());
+        ReadTimelineView view = new ReadTimelineView(context.getPrintStream());
         return new ReadTimelineHandler(context, presenter, view);
     }
 
@@ -74,7 +74,7 @@ public class App {
 
     private Handler createReadWallHandler() {
         ReadWallOutputBoundary presenter = new ReadWallPresenter(context.getClock());
-        ReadWallViewController view = new ReadWallViewController(context.getPrintStream());
+        ReadWallView view = new ReadWallView(context.getPrintStream());
         return new ReadWallHandler(context, presenter, view);
     }
 

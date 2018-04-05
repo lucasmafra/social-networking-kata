@@ -1,6 +1,6 @@
 package com.lucasmafra.socialnetworking.infrastructure.console.handlers;
 
-import com.lucasmafra.socialnetworking.domain.controller.ViewController;
+import com.lucasmafra.socialnetworking.domain.usecases.View;
 import com.lucasmafra.socialnetworking.domain.gateways.PostGateway;
 import com.lucasmafra.socialnetworking.domain.usecases.readtimeline.*;
 import com.lucasmafra.socialnetworking.infrastructure.console.main.AppContext;
@@ -12,12 +12,12 @@ public class ReadTimelineHandler implements Handler {
 
     private AppContext context;
     private ReadTimelineOutputBoundary presenter;
-    private ViewController view;
+    private View view;
 
     private static final String USER_ID = "^(\\w+)";
     private static final Pattern INPUT_PATTERN = Pattern.compile(USER_ID);
 
-    public ReadTimelineHandler(AppContext context, ReadTimelineOutputBoundary presenter, ViewController view) {
+    public ReadTimelineHandler(AppContext context, ReadTimelineOutputBoundary presenter, View view) {
         this.context = context;
         this.presenter = presenter;
         this.view = view;

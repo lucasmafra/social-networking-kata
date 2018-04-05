@@ -12,6 +12,6 @@ public class PostInteractor implements PostInputBoundary {
 
     @Override
     public void post(PostRequestModel request) {
-        postGateway.savePost(request.getUserId(), request.getMessage());
+        postGateway.savePost(request.getUser(), request.getMessage());
     }
 }

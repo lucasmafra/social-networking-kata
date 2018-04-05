@@ -1,6 +1,6 @@
 package com.lucasmafra.socialnetworking.domain.usecases.post;
 
-import com.lucasmafra.socialnetworking.domain.controller.Controller;
+import com.lucasmafra.socialnetworking.domain.usecases.Controller;
 
 public class PostController implements Controller {
 

@@ -1,5 +1,6 @@
 package com.lucasmafra.socialnetworking.infrastructure.data;
 
+import com.lucasmafra.socialnetworking.domain.entities.Follow;
 import com.lucasmafra.socialnetworking.domain.gateways.FollowGateway;
 
 import java.util.ArrayList;
@@ -17,12 +18,12 @@ public class InMemoryFollowGateway implements FollowGateway {
     }
 
     @Override
-    public void saveFollow(String follower, String followed) {
-        List<String> currentFollowing = followMap.get(follower);
-        if (currentFollowing == null) {
-            currentFollowing = new ArrayList<>();
+    public void saveFollow(Follow follow) {
+        List<String> followingUsers = followMap.get(follow.getFollower());
+        if (followingUsers == null) {
+            followingUsers = new ArrayList<>();
         }
-        currentFollowing.add(followed);
-        followMap.put(follower, currentFollowing);
+        followingUsers.add(follow.getFollowed());
+        followMap.put(follow.getFollower(), followingUsers);
     }
 }

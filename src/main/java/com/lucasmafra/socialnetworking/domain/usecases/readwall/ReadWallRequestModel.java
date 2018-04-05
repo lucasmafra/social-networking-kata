@@ -2,13 +2,13 @@ package com.lucasmafra.socialnetworking.domain.usecases.readwall;
 
 public class ReadWallRequestModel {
 
-    private String userId;
+    private String user;
 
-    public ReadWallRequestModel(String userId) {
-        this.userId = userId;
+    public ReadWallRequestModel(String user) {
+        this.user = user;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getUser() {
+        return user;
     }
 }
