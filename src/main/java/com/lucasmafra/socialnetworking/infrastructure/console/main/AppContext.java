@@ -4,6 +4,7 @@ import com.lucasmafra.socialnetworking.domain.gateways.FollowGateway;
 import com.lucasmafra.socialnetworking.domain.gateways.PostGateway;
 import com.lucasmafra.socialnetworking.infrastructure.Clock;
 import com.lucasmafra.socialnetworking.infrastructure.ClockImpl;
+import com.lucasmafra.socialnetworking.infrastructure.data.InMemoryFollowGateway;
 import com.lucasmafra.socialnetworking.infrastructure.data.InMemoryPostGateway;
 import com.lucasmafra.socialnetworking.infrastructure.console.utilities.*;
 
@@ -13,6 +14,7 @@ public class AppContext {
     private PrintStream printStream = new PrintStreamImpl();
     private Clock clock = new ClockImpl();
     private PostGateway postGateway = new InMemoryPostGateway(clock);
+    private FollowGateway followGateway = new InMemoryFollowGateway();
     private static AppContext context;
 
     public static AppContext getInstance() {
@@ -39,6 +41,6 @@ public class AppContext {
     }
 
     public FollowGateway getFollowGateway() {
-        return null;
+        return followGateway;
     }
 }

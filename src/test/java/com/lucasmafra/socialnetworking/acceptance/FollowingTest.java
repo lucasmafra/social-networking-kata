@@ -4,9 +4,7 @@ import org.junit.Test;
 
 import java.util.List;
 
-import static java.util.Arrays.asList;
-import static org.hamcrest.CoreMatchers.is;
-
+import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.junit.Assert.assertThat;
 
 public class FollowingTest extends BaseAcceptanceTest {
@@ -22,8 +20,8 @@ public class FollowingTest extends BaseAcceptanceTest {
         command("Charlie follows Bob");
 
         // Then
-        List<String> following = getFollowingUsersFor("Charlie");
-        assertThat("the user is following the correct users", following, is(asList("Alice", "Bob")));
+        List<String> followings = getFollowingUsersFor("Charlie");
+        assertThat("the user is following the correct users", followings, containsInAnyOrder("Alice", "Bob"));
     }
 
     private List<String> getFollowingUsersFor(String userId) {

@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface FollowGateway {
     List<String> getFollowingUsersFor(String userId);
-    void saveFollow(String follower, String following);
+    void saveFollow(String follower, String followed);
 }

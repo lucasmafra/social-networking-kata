@@ -1,10 +1,7 @@
 package com.lucasmafra.socialnetworking.infrastructure.console.main;
 
 import com.lucasmafra.socialnetworking.domain.usecases.readtimeline.ReadTimelineOutputBoundary;
-import com.lucasmafra.socialnetworking.infrastructure.console.handlers.Handler;
-import com.lucasmafra.socialnetworking.infrastructure.console.handlers.HandlerMatcher;
-import com.lucasmafra.socialnetworking.infrastructure.console.handlers.PostHandler;
-import com.lucasmafra.socialnetworking.infrastructure.console.handlers.ReadTimelineHandler;
+import com.lucasmafra.socialnetworking.infrastructure.console.handlers.*;
 import com.lucasmafra.socialnetworking.infrastructure.console.presenters.ReadTimelinePresenter;
 import com.lucasmafra.socialnetworking.infrastructure.console.views.ReadTimelineViewController;
 
@@ -55,6 +52,7 @@ public class App {
         List<Handler> handlers = new ArrayList<>();
         handlers.add(createPostHandler());
         handlers.add(createReadTimelineHandler());
+        handlers.add(createFollowHandler());
         return handlers;
     }
 
@@ -67,5 +65,7 @@ public class App {
         ReadTimelineViewController view = new ReadTimelineViewController(context.getPrintStream());
         return new ReadTimelineHandler(context, presenter, view);
     }
+
+    private Handler createFollowHandler() { return new FollowHandler(context); }
 
 }
