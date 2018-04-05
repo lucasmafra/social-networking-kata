@@ -16,9 +16,13 @@ public class ReadWallView implements View<ReadWallViewModel> {
 
     @Override
     public void generateView(ReadWallViewModel readWallViewModel) {
-        for (ViewablePost post : readWallViewModel.getWall()) {
-            printStream.print(post.getAuthor() + " - " + post.getMessage() + " (" + post.getElapsedTime() + ")\n");
-        }
+        readWallViewModel
+                .getWall()
+                .forEach(post -> printPost(post.getAuthor(), post.getMessage(), post.getElapsedTime()));
+    }
+
+    private void printPost(String author, String message, String elapsedTime) {
+        printStream.print(author + " - " + message + " (" + elapsedTime + ")\n");
     }
 
 }

@@ -61,7 +61,7 @@ public class BaseAcceptanceTest {
     }
 
     protected List<Post> getPosts(String userId) {
-        return context.getPostGateway().getPostsInReverseChronologicalOrder(userId);
+        return context.getPostGateway().getPostsInReverseChronologicalOrderFor(userId);
     }
 
     protected List<String> getFollowingUsersFor(String userId) {

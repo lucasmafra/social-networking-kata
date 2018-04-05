@@ -10,22 +10,12 @@ import com.lucasmafra.socialnetworking.infrastructure.console.main.AppContext;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class FollowHandler implements Handler {
+public class FollowHandler extends BaseHandler {
 
     private AppContext context;
-    private static final String FOLLOWER_ID = "^(\\w+)";
-    private static final String ACTION = " follows ";
-    private static final String FOLLOWED_ID = "(\\w+)";
-
-    private static final Pattern INPUT_PATTERN = Pattern.compile(FOLLOWER_ID + ACTION + FOLLOWED_ID);
 
     public FollowHandler(AppContext context) {
         this.context = context;
-    }
-
-    @Override
-    public boolean canHandle(String input) {
-        return INPUT_PATTERN.matcher(input).matches();
     }
 
     @Override
@@ -36,8 +26,13 @@ public class FollowHandler implements Handler {
         controller.control();
     }
 
+    @Override
+    Pattern getInputPattern() {
+        return context.getCommands().getFollowCommandPattern();
+    }
+
     private FollowRequestModel parseInput(String input) {
-        Matcher matcher = INPUT_PATTERN.matcher(input);
+        Matcher matcher = getInputPattern().matcher(input);
         matcher.matches();
         String followerId = matcher.group(1);
         String followedId = matcher.group(2);

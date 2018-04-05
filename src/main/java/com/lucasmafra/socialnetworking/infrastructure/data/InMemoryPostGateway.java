@@ -21,22 +21,22 @@ public class InMemoryPostGateway implements PostGateway {
     }
 
     @Override
-    public List<Post> getPostsInReverseChronologicalOrder(String userId) {
+    public List<Post> getPostsInReverseChronologicalOrderFor(String user) {
         return posts.stream()
-                .filter( post -> post.getUser().equals(userId))
+                .filter( post -> post.getUser().equals(user))
                 .sorted(comparing(Post::getCreatedDate).reversed())
                 .collect(toList());
     }
 
     @Override
-    public void savePost(String userId, String message) {
-        Post post = createPostFrom(userId, message);
+    public void savePost(String user, String message) {
+        Post post = createPostFrom(user, message);
         posts.add(post);
     }
 
-    private Post createPostFrom(String userId, String message) {
+    private Post createPostFrom(String user, String message) {
         Date creationDate = clock.now();
-        return new Post(userId, message, creationDate);
+        return new Post(user, message, creationDate);
     }
 
 }

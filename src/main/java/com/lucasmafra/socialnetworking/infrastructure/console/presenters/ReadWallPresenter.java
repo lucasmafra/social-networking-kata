@@ -23,12 +23,11 @@ public class ReadWallPresenter implements ReadWallOutputBoundary<ReadWallViewMod
 
     @Override
     public void present(ReadWallResponseModel response) {
-        List<PostItem> wallPosts = response.getWall();
-        List<ViewablePost> viewablePosts =
-                wallPosts.stream()
+        List<ViewablePost> wall =
+                response.getWall().stream()
                         .map(postItem -> makeViewablePost(postItem))
                         .collect(Collectors.toList());
-        this.viewModel = new ReadWallViewModel(viewablePosts);
+        this.viewModel = new ReadWallViewModel(wall);
     }
 
     @Override

@@ -18,7 +18,7 @@ public class ReadTimelineInteractor implements ReadTimelineInputBoundary {
 
     @Override
     public void readTimeline(ReadTimelineRequestModel request, ReadTimelineOutputBoundary presenter) {
-        List<Post> posts = this.postGateway.getPostsInReverseChronologicalOrder(request.getUser());
+        List<Post> posts = this.postGateway.getPostsInReverseChronologicalOrderFor(request.getUser());
         ReadTimelineResponseModel response = new ReadTimelineResponseModel(
                 posts.stream()
                 .map(post -> new PostItem(post.getMessage(), post.getCreatedDate()))

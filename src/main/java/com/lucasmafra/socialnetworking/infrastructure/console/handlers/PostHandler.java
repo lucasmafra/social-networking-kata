@@ -10,22 +10,12 @@ import com.lucasmafra.socialnetworking.infrastructure.console.main.AppContext;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class PostHandler implements Handler {
+public class PostHandler extends BaseHandler {
 
     private AppContext context;
-    private static final String USER_ID = "^(\\w+)";
-    private static final String ACTION = " -> ";
-    private static final String MESSAGE = "(.*)$";
-
-    private static final Pattern INPUT_PATTERN = Pattern.compile(USER_ID + ACTION + MESSAGE);
 
     public PostHandler(AppContext context) {
         this.context = context;
-    }
-
-    @Override
-    public boolean canHandle(String input) {
-        return INPUT_PATTERN.matcher(input).matches();
     }
 
     @Override
@@ -36,8 +26,13 @@ public class PostHandler implements Handler {
         controller.control();
     }
 
+    @Override
+    Pattern getInputPattern() {
+        return context.getCommands().getPostCommandPattern();
+    }
+
     private PostRequestModel parseInput(String input) {
-        Matcher matcher = INPUT_PATTERN.matcher(input);
+        Matcher matcher = getInputPattern().matcher(input);
         matcher.matches();
         String userId = matcher.group(1);
         String message = matcher.group(2);

@@ -4,19 +4,19 @@ import java.util.List;
 
 public class HandlerMatcher {
 
-    private List<Handler> handlers;
+    private List<BaseHandler> handlers;
 
-    public HandlerMatcher(List<Handler> handlers) {
-        this.handlers= handlers;
+    public HandlerMatcher(List<BaseHandler> handlers) {
+        this.handlers = handlers;
     }
 
-    public Handler match(String input) {
-        for (Handler handler: handlers) {
+    public BaseHandler match(String input) {
+        for (BaseHandler handler: handlers) {
             if (handler.canHandle(input)) {
                 return handler;
             }
         }
-        return new DefaultHandler();
+        return new FallbackHandler();
     }
 
 }

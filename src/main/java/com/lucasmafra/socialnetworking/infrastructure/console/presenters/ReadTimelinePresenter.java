@@ -31,12 +31,17 @@ public class ReadTimelinePresenter implements ReadTimelineOutputBoundary<ReadTim
     }
 
     private ReadTimelineViewModel makeViewable(ReadTimelineResponseModel response) {
-        List<ViewablePost> timeline = response.getTimeline()
-                                      .stream()
-                                      .map( postItem -> new ViewablePost(postItem.getMessage(), format(postItem.getCreationDate(), clock.now())))
-                                      .collect(toList());
+        List<ViewablePost> timeline =
+                response.getTimeline()
+                        .stream()
+                        .map( postItem -> makeViewablePost(postItem))
+                        .collect(toList());
 
         return new ReadTimelineViewModel(timeline);
+    }
+
+    private ViewablePost makeViewablePost(ReadTimelineResponseModel.PostItem postItem) {
+        return new ViewablePost(postItem.getMessage(), format(postItem.getCreationDate(), clock.now()));
     }
 
 }

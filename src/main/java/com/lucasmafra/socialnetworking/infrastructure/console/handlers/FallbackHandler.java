@@ -1,14 +1,21 @@
 package com.lucasmafra.socialnetworking.infrastructure.console.handlers;
 
-public class DefaultHandler implements Handler {
+import java.util.regex.Pattern;
+
+public class FallbackHandler extends BaseHandler {
 
     @Override
     public boolean canHandle(String input) {
-        return false;
+        return true;
     }
 
     @Override
     public void handle(String input) {
         return;
+    }
+
+    @Override
+    Pattern getInputPattern() {
+        return null;
     }
 }

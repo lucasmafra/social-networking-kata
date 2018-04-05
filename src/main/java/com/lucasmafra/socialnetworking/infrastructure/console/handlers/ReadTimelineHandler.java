@@ -8,24 +8,16 @@ import com.lucasmafra.socialnetworking.infrastructure.console.main.AppContext;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ReadTimelineHandler implements Handler {
+public class ReadTimelineHandler extends BaseHandler {
 
     private AppContext context;
     private ReadTimelineOutputBoundary presenter;
     private View view;
 
-    private static final String USER_ID = "^(\\w+)";
-    private static final Pattern INPUT_PATTERN = Pattern.compile(USER_ID);
-
     public ReadTimelineHandler(AppContext context, ReadTimelineOutputBoundary presenter, View view) {
         this.context = context;
         this.presenter = presenter;
         this.view = view;
-    }
-
-    @Override
-    public boolean canHandle(String input) {
-        return INPUT_PATTERN.matcher(input).matches();
     }
 
     @Override
@@ -36,8 +28,13 @@ public class ReadTimelineHandler implements Handler {
         controller.control();
     }
 
+    @Override
+    Pattern getInputPattern() {
+        return context.getCommands().getReadTimelineCommandPattern();
+    }
+
     private ReadTimelineRequestModel parseInput(String input) {
-        Matcher matcher = INPUT_PATTERN.matcher(input);
+        Matcher matcher = getInputPattern().matcher(input);
         matcher.matches();
         String userId = matcher.group(1);
         return new ReadTimelineRequestModel(userId);

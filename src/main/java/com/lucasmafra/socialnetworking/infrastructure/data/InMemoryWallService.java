@@ -20,24 +20,28 @@ public class InMemoryWallService implements WallService {
 
     @Override
     public List<Post> getWallPostsInReverseChronologicalOrderFor(String user) {
-        List<Post> authorPosts = postGateway.getPostsInReverseChronologicalOrder(user);
-        List<Post> followingUsersPosts = getFollowingUsersPostFor(user);
-        return combinePostsInReverseChronologicalOrder(authorPosts, followingUsersPosts);
+        List<Post> ownPosts = getOwnPosts(user);
+        List<Post> followingUsersPosts = getFollowingUsersPosts(user);
+        return combinePostsInReverseChronologicalOrder(ownPosts, followingUsersPosts);
     }
 
-    private List<Post> getFollowingUsersPostFor(String userId) {
-        List<String> followingUsers = followGateway.getFollowingUsersFor(userId);
+    private List<Post> getOwnPosts(String user) {
+        return postGateway.getPostsInReverseChronologicalOrderFor(user);
+    }
+
+    private List<Post> getFollowingUsersPosts(String user) {
+        List<String> followingUsers = followGateway.getFollowingUsersFor(user);
         List<Post> followingUsersPost = new ArrayList<>();
         followingUsers.stream()
                .forEach(followingUser-> {
-                   List<Post> userPosts = postGateway.getPostsInReverseChronologicalOrder(followingUser);
+                   List<Post> userPosts = getOwnPosts(followingUser);
                    followingUsersPost.addAll(userPosts);
                });
         return followingUsersPost;
     }
 
-    private List<Post> combinePostsInReverseChronologicalOrder(List<Post> authorPosts, List<Post> followingUsersPosts) {
-        List<Post> combinedPosts = new ArrayList<>(authorPosts);
+    private List<Post> combinePostsInReverseChronologicalOrder(List<Post> ownPosts, List<Post> followingUsersPosts) {
+        List<Post> combinedPosts = new ArrayList<>(ownPosts);
         combinedPosts.addAll(followingUsersPosts);
         combinedPosts.sort(comparing(Post::getCreatedDate).reversed());
         return combinedPosts;

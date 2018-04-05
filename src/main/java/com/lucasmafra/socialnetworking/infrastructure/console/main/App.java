@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class App {
 
     private AppContext context;
@@ -33,7 +32,7 @@ public class App {
         try {
             context.getPrintStream().print(NEW_LINE_PREFIX);
             String input = context.getBufferedReader().readNextLine();
-            Handler handler = handlerMatcher.match(input);
+            BaseHandler handler = handlerMatcher.match(input);
             handler.handle(input);
         } catch (IOException e) {
             e.printStackTrace();
@@ -47,12 +46,12 @@ public class App {
     }
 
     private HandlerMatcher createHandlerMatcher() {
-        List<Handler> handlers = createHandlers();
+        List<BaseHandler> handlers = createHandlers();
         return new HandlerMatcher(handlers);
     }
 
-    private List<Handler> createHandlers() {
-        List<Handler> handlers = new ArrayList<>();
+    private List<BaseHandler> createHandlers() {
+        List<BaseHandler> handlers = new ArrayList<>();
         handlers.add(createPostHandler());
         handlers.add(createReadTimelineHandler());
         handlers.add(createFollowHandler());
@@ -60,19 +59,19 @@ public class App {
         return handlers;
     }
 
-    private Handler createPostHandler() {
+    private BaseHandler createPostHandler() {
         return new PostHandler(context);
     }
 
-    private Handler createReadTimelineHandler() {
+    private BaseHandler createReadTimelineHandler() {
         ReadTimelineOutputBoundary presenter = new ReadTimelinePresenter(context.getClock());
         ReadTimelineView view = new ReadTimelineView(context.getPrintStream());
         return new ReadTimelineHandler(context, presenter, view);
     }
 
-    private Handler createFollowHandler() { return new FollowHandler(context); }
+    private BaseHandler createFollowHandler() { return new FollowHandler(context); }
 
-    private Handler createReadWallHandler() {
+    private BaseHandler createReadWallHandler() {
         ReadWallOutputBoundary presenter = new ReadWallPresenter(context.getClock());
         ReadWallView view = new ReadWallView(context.getPrintStream());
         return new ReadWallHandler(context, presenter, view);
