@@ -1,8 +1,5 @@
 package com.lucasmafra.socialnetworking.acceptance;
 
-import com.lucasmafra.socialnetworking.doubles.AppContextStub;
-import com.lucasmafra.socialnetworking.infrastructure.console.main.App;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;

@@ -17,7 +17,7 @@ public class PostController implements Controller {
 
     @Override
     public void control() {
-        useCase.publishMessageToPersonalTimeline(parsedInput);
+        useCase.post(parsedInput);
     }
 
 }
