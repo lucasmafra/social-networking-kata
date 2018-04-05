@@ -18,9 +18,9 @@ public class PostTest {
 
     private AppContextStub context;
 
-    private App app;
+    private Date now;
 
-    private static final Date NOW = ClockStub.asDate(2018, Calendar.APRIL, 6, 8, 4, 0);
+    private App app;
 
     @Before public void
     initialize() {
@@ -33,7 +33,8 @@ public class PostTest {
 
         // Given
         context.getBufferedReader().setNextLine("Alice -> I love the weather today");
-        context.getClock().setNow(NOW);
+        now = ClockStub.asDate(2018, Calendar.APRIL, 6, 8, 4, 0);
+        context.getClock().setNow(now); // adjust clock
 
         // When
         app.processInput();
@@ -41,10 +42,36 @@ public class PostTest {
         // Then
         PostGateway postGateway = context.getPostGateway();
         List<Post> userPosts = postGateway.getPostsInReverseChronologicalOrder("Alice");
-        assertThat("expect that 1 post was created", userPosts.size(), is(1));
+        assertThat("1 post was created", userPosts.size(), is(1));
         Post post = userPosts.get(0);
-        assertThat("expect that the created post has correct user id", post.getUserId(), is("Alice"));
-        assertThat("expect that the created post has correct message", post.getMessage(), is("I love the weather today"));
-        assertThat("expect that the created post has correct created date", post.getCreatedDate(), is(NOW));
+        assertThat("the post has correct user id", post.getUserId(), is("Alice"));
+        assertThat("the post has correct message", post.getMessage(), is("I love the weather today"));
+        assertThat("the post has correct created date", post.getCreatedDate(), is(now));
     }
+
+    @Test public void
+    user_can_publish_multiple_messages_to_personal_timeline() {
+
+        // Given
+        context.getBufferedReader().setNextLine("Bob -> Damn! We lost!"); // First post
+        now = ClockStub.asDate(2018, Calendar.APRIL, 6, 8, 0, 0);
+        context.getClock().setNow(now); // adjust clock
+        app.processInput();
+
+        // And
+        context.getBufferedReader().setNextLine("Bob -> Damn! We lost!"); // Second post
+        now = ClockStub.asDate(2018, Calendar.APRIL, 10, 9, 0, 0);
+        context.getClock().setNow(now); // adjust clock
+
+
+        // When
+        app.processInput();
+
+        // Then
+        PostGateway postGateway = context.getPostGateway();
+        List<Post> userPosts = postGateway.getPostsInReverseChronologicalOrder("Bob");
+        assertThat("2 posts were created", userPosts.size(), is(2));
+    }
+
+
 }

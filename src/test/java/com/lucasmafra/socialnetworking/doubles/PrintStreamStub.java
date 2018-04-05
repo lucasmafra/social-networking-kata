@@ -4,14 +4,20 @@ import com.lucasmafra.socialnetworking.infrastructure.console.utilities.PrintStr
 
 public class PrintStreamStub implements PrintStream {
 
-    private String printedContent;
+    private String printedContent = "";
 
     @Override
     public void print(String content) {
-        this.printedContent = content;
+        if (!content.equals("> ")) { // ignore command prefix
+            this.printedContent += content;
+        }
     }
 
     public String getPrintedContent() {
         return printedContent;
+    }
+
+    public void resetPrinter() {
+        printedContent = "";
     }
 }
