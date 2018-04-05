@@ -1,5 +1,6 @@
 package com.lucasmafra.socialnetworking.infrastructure.console.main;
 
+import com.lucasmafra.socialnetworking.domain.gateways.FollowGateway;
 import com.lucasmafra.socialnetworking.domain.gateways.PostGateway;
 import com.lucasmafra.socialnetworking.infrastructure.Clock;
 import com.lucasmafra.socialnetworking.infrastructure.ClockImpl;
@@ -35,5 +36,9 @@ public class AppContext {
 
     public PostGateway getPostGateway() {
         return postGateway;
+    }
+
+    public FollowGateway getFollowGateway() {
+        return null;
     }
 }
