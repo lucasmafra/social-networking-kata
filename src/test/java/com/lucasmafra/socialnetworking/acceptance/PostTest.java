@@ -24,7 +24,7 @@ public class PostTest {
 
     @Before public void
     initialize() {
-        context = AppContextStub.getInstance();
+        context = new AppContextStub();
         app = new App(context);
     }
 

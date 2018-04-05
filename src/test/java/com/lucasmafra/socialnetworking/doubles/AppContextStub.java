@@ -11,15 +11,6 @@ public class AppContextStub extends AppContext {
     private ClockStub clock = new ClockStub();
     private PostGateway postGateway = new InMemoryPostGateway(clock);
 
-    private static AppContextStub context;
-
-    public static AppContextStub getInstance() {
-        if (context == null) {
-            context = new AppContextStub();
-        }
-        return context;
-    }
-
     @Override
     public BufferedReaderStub getBufferedReader() {
         return bufferedReader;
