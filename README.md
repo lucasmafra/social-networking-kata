@@ -11,10 +11,10 @@ The exercise description can be checked [here](kata_description.txt).
 
 ## Build and Run
 
-**System Requirements:** In order to build and run this project, is necessary to have Java 8 and Maven installed.
+**System Requirements:** Java 8 and Maven are required to build an run the project.
 
 ### Building the project
-Open the terminal and from the project folder execute
+Open the terminal, navigate to the project folder and execute:
 ```sh
 mvn clean package
 ```
@@ -22,69 +22,53 @@ mvn clean package
 This will generate a *socialnetworking-0.0.1-SNAPSHOT.jar* file inside the *target* folder
 
 ### Runnning the project
-After build the project, execute the command below to run the application:
+After building the project, execute the command below to run the application:
  ```sh
  java -cp target/socialnetworking-0.0.1-SNAPSHOT.jar com.lucasmafra.socialnetworking.infrastructure.console.main.App
  ```
 
 ## About the implementation
 
-* This application design was heavily inspired on [Clean Architecure](https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html) by Uncle Bob.
+* In the application design, I used many of the concepts presented in the [Clean Architecure](https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html) book by Uncle Bob.
+Despite the fact that this is only a small project with few requirements, I wanted to exercise how to build an application
+agnostic to details like databases and IO devices.
 
-* The core principle that led my design is *"Depend on abstractions, not on concretions"*. Because of
- that, I created some interfaces and abstraction layers that would not be necessary for the exercise completion. 
-Still, I decided to follow this way to practice and see if I could get to a good design.
+* I also wanted to practice an Outside-in approach to TDD. I started with an acceptance test for the posting feature,
+then I moved to the timeline feature, and so on. I focused on getting each feature completely done before moving to
+the next one.  
 
-* That was not my first time practicing Clean Architecture and TDD. But it was my first time trying the
-*Outside-in* approach! It introduced me some difficulties since I wasn't sure where to go in the first
- acceptance tests, but it led me to an unexpected cool new thing: as I was coding to pass in the 
- acceptance tests, I realized how the "package by layer" style that I was using was sort of inefficient,
-  since I had to transverse many folders and layers just to get a feature done. So I decided to go back 
-  to Clean Architecture's book and found this idea of *Ports and Adapters packaging* that I decided to 
-  follow. And I'm going to explain that in the next bullet point!
-* Basically, my code is composed of an "inside world" (domain) and an "outside world" (infrastructure),
- opposed to the "core, data and presentation" horizontal layering that I was used to follow. 
- The biggest benefit is that I'm grouping my files according to their use case (feature) but I'm still agnostic to the external world. 
- Here is a diagram that illustrates my application architecture:
- 
+* A great feedback that I got from my code with this approach is that the "package by layer" style
+that I was using in the project was not so good, since I had to transverse many folders and layers just to get a feature done. 
+So I decided to take a different way of structuring the packages. I abandoned the "core, data and presentation" horizontal layering
+and divided the code into two worlds: the "inside" (domain) and the "outside" (infrastructure). Here is an diagram illustrating the application architecture: 
+
  ![Architecture schema](social_networking_kata_architecture.png)
  
  
 The \<**I**> symbol represents *interfaces*, while the \<**DS**> 
 represent simple *data structures*. An arrow from A to B means that A 
-knows about B but B does not know about A.
+knows about B but B does not know about A. It is very cool how dependency allways goes from the outside world to the inside - never the other way around.
 
- ## To think about
- At some point of the development process, I moved the services 
- implementation to the infrastructure, and then I moved it back to the 
- domain. The same happened to the controller, view and view model classes. I would like to share my thoughts about that:
- * In the case of the service, I don't like the fact that it **implicitly** assumes some facts about the data layer. 
-  For example, in order to retrieve the wall to the use case interactor, 
- the wall service gets the posts from the user, then his followings,
-  then his followings posts and finally it combines the posts and return them.
-  That's obviously a not so good strategy when we talk about performance. Let's say
-  that our system now has many users and posts, and we decide to use the *reverse feed* strategy,
-  or in another words, every time that someone you follow make a new post, the system create a reference
-  of this new post somewhere in the storage dedicated to your wall. That would make much better
-  to retrieve your wall when you ask for it, but how can we address that change in our code? We would certainly
-  have to change our wall service method. So that's the problem: we would make a change inside our domain in the name of performance.
-  It doesn't feel right to me. Yet, I'm not so confident about putting the service in
-  the infrastructure package, since it does not **explicitly** know about the external world.
-  
-  * In the case of the presenters, controllers, views and view models,
-  I'm still struggling with the fact I'm putting all of that inside the
-  domain package. That's probably because I still have the "horizontal
-   layering" model in my mind, so it's hard to see something that is apparently a detail, like the 
-   view-model, inside the domain package. But since I was experimenting a new way of packaging, and
-    mainly, I inverted the dependency and used the Humble Object pattern so the view details like the 
-    output system are in the outside world, I decided to relieve that. But I still have a problem. 
-    Let's say that we are building a web version of this Kata. Now, when we make a new post, we want to 
-    show something in the browser, we want to give some user feedback. We wil certainly have to adapt 
-    our use case, since with the current console application our use case does not present nothing. 
-    But is that reasonable? Just because we are creating a new requirement for presenting, should we really change our domain?
-    What about if we have, for the same use case, two different view models? How can we address that? Despite
-    all of those questions, I decided to keep things as it is for now since I don't have any better solution beside
-    falling back into the horizonal layering again.
-      
+ ## Things that I'm not happy about
  
-
+ * I couldn't find an appropriate place to put my custom Clock (I wanted to take full control of it). 
+ It was the same for the ElapsedTimeFormatter. The only thing that I knew was that I had to keep them inside
+ the domain package so I would not break the dependency rule. I end up moving them to an "utilities" folder.
+ 
+ * I feel like I still have that "horizontal layering" thinking. It was very hard to me to put the controller, presenter and view-model
+ in the domain package inside each use case. What comforts me is 1) since I'm inverting dependencies 
+ they all remain agnostic about the delivery system 2) it makes really easier to write and change the 
+ feature since almost all the files are in the same package 3) it's nice to have less files in the 
+ infrastrucutre folder, after all, it should contain only some "glue code". But still, it's hard.
+ 
+ * I have serious doubts about the role that the services should play. They don't explicitly know nothing about the
+ data storage mechanism, since they collaborate with the Gateway interface, but I feel like they are implicitly assuming certain
+ things about the data storage. For example: the WallService collaborates with the FollowGateway and
+  the PostGateway to return the user wall. They do that by getting the posts of the user, then his followings, then his followings posts,
+  and finally they combine those posts and return them. That clearly can bring some perfomance issues. So let's say that now we decide to use a
+  new strategy on how we storage the data. Let'say that, whenever a user that you follow makes a post, we'll 
+  create a reference for that post somewhere in the memory dedicated to your wall, so that we don't have to "calculate" the wall on the fly every time a user requests it.
+  How can we address that change in our code? We would certainly have to change our Wall Service. We would probably have to change the Timeline Service
+  as well, since it would have to do something more when calling "post to timeline" method. So, basically, we would be
+  changing thinks in the domain for the name of perfomance. That does not feels right to me. At all. What comforts me, again, is that
+  we are not breaking the dependency rule, at least explicitly. Also, I think it could be overengineering to antecipate that kind of problem. Yet, it is a point to think about. 
