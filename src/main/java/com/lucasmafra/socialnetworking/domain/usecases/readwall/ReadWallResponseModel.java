@@ -5,23 +5,23 @@ import java.util.List;
 
 public class ReadWallResponseModel {
 
-    private List<PostItem> wall;
+    private List<PostResponse> posts;
 
-    public ReadWallResponseModel(List<PostItem> wall) {
-        this.wall = wall;
+    public ReadWallResponseModel(List<PostResponse> posts) {
+        this.posts = posts;
     }
 
-    public List<PostItem> getWall() {
-        return wall;
+    public List<PostResponse> getPosts() {
+        return posts;
     }
 
-    public static class PostItem {
+    public static class PostResponse {
 
         private String author;
         private String message;
         private Date creationDate;
 
-        public PostItem(String author, String message, Date creationDate) {
+        public PostResponse(String author, String message, Date creationDate) {
             this.author = author;
             this.message = message;
             this.creationDate = creationDate;
