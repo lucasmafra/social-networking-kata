@@ -70,5 +70,5 @@ knows about B but B does not know about A. It is very cool how dependency allway
   create a reference for that post somewhere in the memory dedicated to your wall, so that we don't have to "calculate" the wall on the fly every time a user requests it.
   How can we address that change in our code? We would certainly have to change our Wall Service. We would probably have to change the Timeline Service
   as well, since it would have to do something more when calling "post to timeline" method. So, basically, we would be
-  changing thinks in the domain for the name of perfomance. That does not feels right to me. At all. What comforts me, again, is that
+  changing things in the domain in the name of perfomance. That doesn't feel right to me. At all. What comforts me, again, is that
   we are not breaking the dependency rule, at least explicitly. Also, I think it could be overengineering to antecipate that kind of problem. Yet, it is a point to think about. 
