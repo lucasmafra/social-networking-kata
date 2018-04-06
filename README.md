@@ -21,7 +21,7 @@ mvn clean package
 
 This will generate a *socialnetworking-0.0.1-SNAPSHOT.jar* file inside the *target* folder
 
-### Runnning the project
+### Running the project
 After building the project, execute the command below to run the application:
  ```sh
  java -cp target/socialnetworking-0.0.1-SNAPSHOT.jar com.lucasmafra.socialnetworking.infrastructure.console.main.App
@@ -65,10 +65,10 @@ knows about B but B does not know about A. It is very cool how dependency allway
  data storage mechanism, since they collaborate with the Gateway interface, but I feel like they are implicitly assuming certain
  things about the data storage. For example: the WallService collaborates with the FollowGateway and
   the PostGateway to return the user wall. They do that by getting the posts of the user, then his followings, then his followings posts,
-  and finally they combine those posts and return them. That clearly can bring some perfomance issues. So let's say that now we decide to use a
+  and finally they combine those posts and return them. That clearly can bring some performance issues. So let's say that now we decide to use a
   new strategy on how we storage the data. Let'say that, whenever a user that you follow makes a post, we'll 
   create a reference for that post somewhere in the memory dedicated to your wall, so that we don't have to "calculate" the wall on the fly every time a user requests it.
   How can we address that change in our code? We would certainly have to change our Wall Service. We would probably have to change the Timeline Service
   as well, since it would have to do something more when calling "post to timeline" method. So, basically, we would be
-  changing things in the domain in the name of perfomance. That doesn't feel right to me. At all. What comforts me, again, is that
-  we are not breaking the dependency rule, at least explicitly. Also, I think it could be overengineering to antecipate that kind of problem. Yet, it is a point to think about. 
+  changing things in the domain in the name of performance. That doesn't feel right to me. At all. What comforts me, again, is that
+  we are not breaking the dependency rule, at least explicitly. Also, it might be overengineering to anticipate that kind of problem. Yet, it is a point to think about. 
