@@ -46,7 +46,7 @@ public class ReadTimelineTest extends BaseAcceptanceTest {
         // Then
         printedContent = getPrintedContent();
         expected = "Good game though. (1 minute ago)\n" +
-                "Damn! We lost! (2 minutes ago)\n";
+                   "Damn! We lost! (2 minutes ago)\n";
         assertThat("the timeline was printed correctly for multiple posts", printedContent, is(expected));
     }
 
